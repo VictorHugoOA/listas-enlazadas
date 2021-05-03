@@ -1,0 +1,82 @@
+.simbolo{
+	color: #ff0000;
+	font-weight: bolder;
+}
+
+.palabra-reservada{
+	color: #000000;
+	font-weight: bold;
+}
+
+.impresion{
+	color: #0000cd;
+	font-weight: bold;
+}
+
+.numero{
+	color: #7b1fa2
+}
+
+.comentario{
+	color: #64b5f6
+}
+
+.libreria{
+	color:#4caf50;
+}
+
+.salto-linea{
+	height: 1.5em;
+}
+
+#div-codigo{
+	font-family: Consolas,"monospace";
+	font-size: 5px;
+	color: #000000;
+}
+
+.btn-deshabilitar{
+	display: none;
+}
+
+.plan_programacion{
+
+	max-width: 700px;
+
+}
+
+#div_titulo_h1{
+
+	width: 100%;
+	height: 50px;
+	background-color: #f57c00;
+	margin: 0px;
+	padding: 0px;
+	display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#div_titulo_h1 h1{
+
+	font-size: 26px;
+	color: white;
+
+}
+
+.main-alert{
+	position: absolute;
+	margin: 20px 0;
+	top: -5px;
+	right: 15px;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+}
+
+.main-alert.mostrar-alerta{
+	top: 0;
+	opacity: 1;
+	visibility: visible;
+}
