@@ -49,6 +49,7 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listas ligadas</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ action('ListasSimplementeLigadasController@index') }}">Listas Simplemente Ligadas</a>
+                                <a class="dropdown-item" href="{{ action('ListasDoblementeLigadasController@index') }}">Listas Doblemente Ligadas</a>
                             </div>
                         </li>
                     </ul>
