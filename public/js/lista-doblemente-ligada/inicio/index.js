@@ -1047,10 +1047,17 @@ function crear_tabla_insertar_nodo_final(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 1em;">' +
 						//ptrNodoNuevo->ptrNodoSiguiente = NULL;
-						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+						'ptrNodoNuevo<span class="slimbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 1em;">' +
+						//ptrNodoNuevo->ptrNodoSiguiente = NULL;
+						'ptrNodoNuevo<span class="slimbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_crear_nodo_final_ejecutar_3_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -1093,10 +1100,17 @@ function crear_tabla_insertar_nodo_final(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 1em;">' +
 						//ptrNodoFinal->ptrNodoSiguiente = ptrNodoNuevo;
 						'ptrNodoFinal<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 1em;">' +
+						//ptrNodoNuevo->ptrNodoAnterior = ptrNodoFinal;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoFinal<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_crear_nodo_final_ejecutar_6_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -1191,6 +1205,9 @@ function crear_tabla_insertar_nodo_final(){
 
 			objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.inicializado = true;
 			objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = null;
+
+			objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.inicializado = true;
+			objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = null;
 			
 			actualizar();
 
@@ -1257,11 +1274,13 @@ function crear_tabla_insertar_nodo_final(){
 		}
 		
 		//6 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoNuevo;
+		//ptrNodoNuevo->ptrNodoAnterior = ptrNodoFinal;
 		document.getElementById("btn_crear_nodo_final_ejecutar_6_" + direccion_memoria_nodo).onclick = function() {
 
 			document.getElementById("btn_crear_nodo_final_ejecutar_6_" + direccion_memoria_nodo).style.display = "none";
 
 			objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoNuevo.nodo_conectado.key].key;
+			objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = objetos[obj_ptrNodoFinal.nodo_conectado.key].key;
 
 			actualizar();
 
@@ -1604,10 +1623,17 @@ function crear_tabla_insertar_nodo_antes_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 2em;">' +
 						//18 //ptrNodoNuevo->ptrNodoSiguiente = NULL;
 						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 2em;">' +
+						//18 //ptrNodoNuevo->ptrNodoAnterior = NULL;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_antes_de_ejecutar_18_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -1666,10 +1692,17 @@ function crear_tabla_insertar_nodo_antes_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//22 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoInicio;
 						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//22 //ptrNodoInicio->ptrNodoAnterior = ptrNodoNuevo;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_antes_de_ejecutar_22_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -1712,10 +1745,17 @@ function crear_tabla_insertar_nodo_antes_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//25 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoNuevo;
 						'ptrNodoAnterior<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//25 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoAnterior;
+						'ptrNodoAnterior<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_antes_de_ejecutar_25_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -1728,10 +1768,17 @@ function crear_tabla_insertar_nodo_antes_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//26 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual;
 						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//26 //ptrNodoActual->ptrNodoAnterior = ptrNodoNuevo;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_antes_de_ejecutar_26_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -2178,6 +2225,9 @@ function crear_tabla_insertar_nodo_antes_de(){
 
 				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.inicializado = true;
 				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = null;
+
+				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.inicializado = true;
+				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = null;
 		
 				actualizar();
 
@@ -2268,11 +2318,13 @@ function crear_tabla_insertar_nodo_antes_de(){
 			}
 				
 				//22 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoInicio;
+				//22 //ptrNodoInicio->ptrNodoAnterior = ptrNodoNuevo;
 				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_22_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_22_" + direccion_memoria_nodo).style.display = "none";
 
 					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+					objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoNuevo.nodo_conectado.key;
 
 					actualizar();
 					
@@ -2339,11 +2391,13 @@ function crear_tabla_insertar_nodo_antes_de(){
 			//}else{
 				
 				//25 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoNuevo;
+				//25 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoAnterior;
 				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_25_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_25_" + direccion_memoria_nodo).style.display = "none";
 
 					objetos[obj_ptrNodoAnterior.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoNuevo.nodo_conectado.key;
+					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoAnterior.nodo_conectado.key;
 					
 					actualizar();
 
@@ -2364,11 +2418,13 @@ function crear_tabla_insertar_nodo_antes_de(){
 				}
 				
 				//26 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual;
+				//26 //ptrNodoActual->ptrNodoAnterior = ptrNodoNuevo;
 				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_26_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_26_" + direccion_memoria_nodo).style.display = "none";
 
 					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoActual.nodo_conectado.key;
+					objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoNuevo.nodo_conectado.key;
 					
 					//fin de la función
 
@@ -2712,10 +2768,17 @@ function crear_tabla_insertar_nodo_despues_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 2em;">' +
 						//13 //ptrNodoNuevo->ptrNodoSiguiente = NULL;
 						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 2em;">' +
+						//13 //ptrNodoNuevo->ptrNodoAnterior = NULL;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_despues_de_ejecutar_13_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -2774,10 +2837,17 @@ function crear_tabla_insertar_nodo_despues_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//17 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoNuevo;
 						'ptrNodoFinal<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//17 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoFinal;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_despues_de_ejecutar_17_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -2820,10 +2890,17 @@ function crear_tabla_insertar_nodo_despues_de(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//19 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual->ptrNodoSiguiente;
 						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente;' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//19 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoActual;
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoActual;' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_despues_de_ejecutar_19_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -3232,12 +3309,16 @@ function crear_tabla_insertar_nodo_despues_de(){
 			}
 			
 			//13 //ptrNodoNuevo->ptrNodoSiguiente = NULL;
+			//ptrNodoNuevo->ptrNodoAnterior = NULL;
 			document.getElementById("btn_insertar_nodo_despues_de_ejecutar_13_" + direccion_memoria_nodo).onclick = function() {
 
 				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_13_" + direccion_memoria_nodo).style.display = "none";
 				
 				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.inicializado = true;
 				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = null;
+
+				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.inicializado = true;
+				objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = null;
 		
 				actualizar();
 		
@@ -3330,11 +3411,14 @@ function crear_tabla_insertar_nodo_despues_de(){
 			}
     		
 				//17 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoNuevo;
+				//ptrNodoNuevo->ptrNodoAnterior = ptrNodoFinal;
 				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_17_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_17_" + direccion_memoria_nodo).style.display = "none";
 					
 					objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoNuevo.nodo_conectado.key].key;
+					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = objetos[obj_ptrNodoFinal.nodo_conectado.key].key;
+					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = objetos[obj_ptrNodoFinal.nodo_conectado.key].key;
 					
 					actualizar();
 
@@ -3399,12 +3483,16 @@ function crear_tabla_insertar_nodo_despues_de(){
 							
 			//}else{
 				
+				//19 //ptrNodoActual->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoNuevo;
 				//19 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual->ptrNodoSiguiente;
+				//19 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoActual;
 				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).style.display = "none";
 					
+					objetos[objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key].ptrLigaAnt.key = objetos[obj_ptrNodoNuevo.nodo_conectado.key].key;
 					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key;
+					objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = objetos[obj_ptrNodoActual.nodo_conectado.key].key;
 					
 					actualizar();
 
@@ -3658,10 +3746,17 @@ function crear_tabla_eliminar_nodo_inicio(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+
 					'<span style="padding-left: 3em;">' +
 						//ptrNodoInicio = ptrNodoInicio->ptrNodoSiguiente;
 						'ptrNodoInicio <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">;</span>' +
 					'</span>' +
+					'<br>' +
+					'<span style="padding-left: 3em;">' +
+						//ptrNodoInicio->ptrNodoAnterior = NULL;
+						'ptrNodoInicio <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">;</span>' +
+					'</span>' +
+
 				'</td>' +
 				'<td>' +
 					'<button id="btn_eliminar_nodo_inicio_ejecutar_7_' + cont_eliminar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -3919,6 +4014,7 @@ function crear_tabla_eliminar_nodo_inicio(){
 					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_7_" + cont_eliminar).style.display = "none";
 
 					obj_ptrNodoInicio.nodo_conectado.key = objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaSig.key;
+					objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key = null;
 
 					actualizar();
 
@@ -5103,10 +5199,17 @@ function crear_tabla_eliminar_nodo_informacionx(){
 								'<tr>' +
 									'<td></td>' +
 									'<td>' +
+
+										'<span style="padding-left: 5em;">' +
+											//ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = NULL;
+											'ptrNodoEliminar<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo">=</span>NULL<span class="simbolo">;</span>' +
+										'</span>' +
+										'<br>' +
 										'<span style="padding-left: 5em;">' +
 											//ptrNodoInicio = ptrNodoEliminar->ptrNodoSiguiente;
 											'ptrNodoInicio <span class="simbolo">=</span> ptrNodoEliminar<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">;</span>' +
 										'</span>' +
+
 									'</td>' +
 									'<td>' +
 										'<button id="btn_eliminar_nodo_informacion_ejecutar_20_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -5836,6 +5939,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_20_" + cont_eliminar).style.display = "none";
 				
+							objetos[objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key].ptrLigaAnt.key = null;
 							obj_ptrNodoInicio.nodo_conectado.key = objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key;
 
 							actualizar();

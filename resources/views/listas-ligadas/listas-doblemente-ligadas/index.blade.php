@@ -1264,7 +1264,7 @@
 
 				//endpoint
 				let x_fin = obj.ptrLigaAnterior_estructura.contenedor.x + 90;
-				let y_fin = obj.ptrLigaAnterior_estructura.contenedor.y + (obj.ptrLigaAnterior_estructura.contenedor.height/2);
+				let y_fin = obj.ptrLigaAnterior_estructura.contenedor.y - 11;
 
 				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, "#00FF00");
 
