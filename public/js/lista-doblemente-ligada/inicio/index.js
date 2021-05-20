@@ -555,7 +555,7 @@ function crear_tabla_insertar_nodo_inicial(){
 
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+	    		"explicacion": "Se inicializan los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
 	    		"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			};
@@ -816,7 +816,7 @@ function crear_tabla_insertar_nodo_inicio(){
 
 		let objExplicacion = {
     		"titulo": "Función void insertar_nodo_inicio()",
-    		"explicacion": "Función que agrega un nuevo nodo al inicio de la lista simplemente ligada.",
+    		"explicacion": "Función que agrega un nuevo nodo al inicio de la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
 		};
@@ -876,7 +876,7 @@ function crear_tabla_insertar_nodo_inicio(){
 
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+	    		"explicacion": "Se inicializan los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
 	    		"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			};
@@ -1158,7 +1158,7 @@ function crear_tabla_insertar_nodo_final(){
 
 		let objExplicacion = {
     		"titulo": "Función void insertar_nodo_final()",
-    		"explicacion": "Función que agrega un nuevo nodo al final de la lista simplemente ligada.",
+    		"explicacion": "Función que agrega un nuevo nodo al final de la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
 		};
@@ -1219,7 +1219,7 @@ function crear_tabla_insertar_nodo_final(){
 
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+	    		"explicacion": "Se inicializan los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
 	    		"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			};
@@ -1887,7 +1887,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 
 		let objExplicacion = {
     		"titulo": "Función void insertar_antes_de()",
-    		"explicacion": "Función que agrega un nuevo nodo antes de un nodo dado como referencia que se encuentra en la lista simplemente ligada.",
+    		"explicacion": "Función que agrega un nuevo nodo antes de un nodo dado como referencia que se encuentra en la lista dobemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
 		};
@@ -2238,7 +2238,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 			
 				let objExplicacion = {
 					"titulo": "",
-					"explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+					"explicacion": "Se inicializan los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
 					"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 				};
@@ -3329,7 +3329,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 				let objExplicacion = {
 		    		"titulo": "Función void insertar_despues_de()",
-		    		"explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+		    		"explicacion": "Se inicializan los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
 		    		"imagen_titulo": "Plan de programación 4 - Sintaxis operador new",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_4_operador_new.PNG",
 		    	};
