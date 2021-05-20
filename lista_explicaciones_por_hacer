@@ -1,0 +1,15 @@
+Explicación doble puntero en estructura nodo (ptrNodoAnterior, ptrNodoSiguiente).
+Explicación doble puntero inciar en NULL función para todas las funciones (ptrNodoAnterior, ptrNodoSiguiente)
+Explicación asignar ptrNodoInicio->ptrNodoAnterior = ptrNodoNuevo en función insertar_nodo_inicio
+Explicación asignar ptrNodoNuevo->ptrNodoAnterior = ptrNodoFinal en función insertar_nodo_final
+Explicación asignar ptrNodoAnterior->ptrNodoSiguiente = ptrNodoNuevo y ptrNodoNuego->ptrNodoAnterior = ptrNodoAnterior en función insertar_nodo_antes_de
+Explicación asignar ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual->ptrNodoSiguiente y ptrNodoNuevo->ptrNodoAnterior = ptrNodoActual; en función insertar_despues_de
+Explicación asignar ptrNodoInicio->ptrNodoAnterior = NULL en función elimiar_nodo_inicio
+Explicación de if(ptrNodoEliminar != ptrNodoFinal){ en función eliminar_funcionX
+Explicación de ptrNodoEliminatr->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior en función eliminar_funcionX
+
+Agregar f(ptrNodoEliminar != ptrNodoFinal){ en función eliminar_funcionX
+Agregar ptrNodoEliminatr->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior en función eliminar_funcionX
+Agregar impresión del puntero anterior a función buscar
+Agregar impresión del puntero anterior a función imprimir_lista
+
