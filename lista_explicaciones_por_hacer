@@ -8,8 +8,4 @@ Explicación asignar ptrNodoInicio->ptrNodoAnterior = NULL en función elimiar_n
 Explicación de if(ptrNodoEliminar != ptrNodoFinal){ en función eliminar_funcionX
 Explicación de ptrNodoEliminatr->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior en función eliminar_funcionX
 
-Agregar f(ptrNodoEliminar != ptrNodoFinal){ en función eliminar_funcionX
-Agregar ptrNodoEliminatr->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior en función eliminar_funcionX
-Agregar impresión del puntero anterior a función buscar
 Agregar impresión del puntero anterior a función imprimir_lista
-

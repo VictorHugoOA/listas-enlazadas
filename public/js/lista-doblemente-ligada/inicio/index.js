@@ -768,7 +768,7 @@ function crear_tabla_insertar_nodo_inicio(){
 				'<td>' +
 					'<span style="padding-left: 1em;">' +
 						//ptrNodoInicio->ptrNodoAnterior = ptrNodoNuevo;
-						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+						'ptrNodoInicio<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
 					'</span>' +
 				'</td>' +
 				'<td>' +
@@ -1700,7 +1700,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 					'<br>' +
 					'<span style="padding-left: 3em;">' +
 						//22 //ptrNodoInicio->ptrNodoAnterior = ptrNodoNuevo;
-						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+						'ptrNodoInicio<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
 					'</span>' +
 
 				'</td>' +
@@ -1753,7 +1753,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 					'<br>' +
 					'<span style="padding-left: 3em;">' +
 						//25 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoAnterior;
-						'ptrNodoAnterior<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
+						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoAnterior<span class="simbolo">;</span>' +
 					'</span>' +
 
 				'</td>' +
@@ -1776,7 +1776,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 					'<br>' +
 					'<span style="padding-left: 3em;">' +
 						//26 //ptrNodoActual->ptrNodoAnterior = ptrNodoNuevo;
-						'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">;</span>' +
+						'ptrNodoActual <span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoNuevo <span class="simbolo">;</span>' +
 					'</span>' +
 
 				'</td>' +
@@ -5268,7 +5268,39 @@ function crear_tabla_eliminar_nodo_informacionx(){
 										'</td>' +
 									'</tr>' +	
 									
-								//}
+								//}else{
+								'<tr>' +
+									'<td></td>' +
+									'<td>' +
+										'<span style="padding-left: 5em;">' +
+											//}else{
+											'<span class="simbolo">}</span><span class="palabra-reservada">else</span><span class="simbolo">{</span>' +
+										'</span>' +
+									'</td>' +
+									'<td>' +
+									'</td>' +
+									'<td>' +
+									'</td>' +
+								'</tr>' +
+
+								// 28 //ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior;
+								'<tr>' +
+									'<td></td>' +
+									'<td>' +
+										'<span style="padding-left: 5em;">' +
+											//ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior;
+											'ptrNodoEliminar<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo">=</span> ptrNodoAnterior' +
+										'</span>' +
+									'</td>' +
+									'<td>' +
+										'<button id="btn_eliminar_nodo_informacion_ejecutar_28_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+									'</td>' +
+									'<td>' +
+										'<button id="btn_eliminar_nodo_informacion_explicacion_28_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
+									'</td>' +
+								'</tr>' +
+
+								// }
 								'<tr>' +
 									'<td></td>' +
 									'<td>' +
@@ -5281,7 +5313,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 									'</td>' +
 									'<td>' +
 									'</td>' +
-								'</tr>' +	
+								'</tr>' +
 								
 								//23 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoEliminar->ptrNodoSiguiente;
 								'<tr>' +
@@ -5971,7 +6003,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 							if(obj_ptrNodoFinal.nodo_conectado.key == obj_ptrNodoEliminar.nodo_conectado.key){
 								document.getElementById("btn_eliminar_nodo_informacion_ejecutar_22_" + cont_eliminar).style.display = "block";
 							}else{
-								document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).style.display = "block";
+								document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).style.display = "block";
 							}
 			
 				
@@ -6019,30 +6051,42 @@ function crear_tabla_eliminar_nodo_informacionx(){
 							
 						//}
 
-						//23 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoEliminar->ptrNodoSiguiente;
-						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).onclick = function() {
-
-							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).style.display = "none";
-				
-							objetos[obj_ptrNodoAnterior.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key;
-
+						//28 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoEliminar->ptrNodoSiguiente;
+						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).onclick = function() {
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).style.display = "none";
+							objetos[objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key].ptrLigaAnt.key = obj_ptrNodoAnterior.nodo_conectado.key;
 							actualizar();
-
-							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
-				
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).style.display = "block";
 						}
-						//23
-						document.getElementById("btn_eliminar_nodo_informacion_explicacion_23_" + cont_eliminar).onclick = function() {
 
+						// 28
+						document.getElementById("btn_eliminar_nodo_informacion_explicacion_23_" + cont_eliminar).onclick = function() {
 							let objExplicacion = {
 					    		"titulo": "",
-					    		"explicacion": "El miembro ptrNodoSiguiente del nodo que está antes del nodo que va a ser eliminado, debe de apuntar al nodo que sigue del nodo al que va a ser eliminado.",
+					    		"explicacion": "El miembro ptrNodoAnterior del ptrNodoSiguiente que pertenece al nodo que va a ser eliminado, debe de apuntar al nodo anterior del nodo que va a ser eliminado.",
 					    		"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 								"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 					    	};
-
 					    	crear_explicacion(objExplicacion, "block");
+						}
 
+						//23 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoEliminar->ptrNodoSiguiente;
+						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).onclick = function() {
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).style.display = "none";
+							objetos[obj_ptrNodoAnterior.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key;
+							actualizar();
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
+						}
+
+						//23
+						document.getElementById("btn_eliminar_nodo_informacion_explicacion_23_" + cont_eliminar).onclick = function() {
+							let objExplicacion = {
+					    		"titulo": "",
+					    		"explicacion": "El miembro ptrNodoSiguiente del nodo que está antes del nodo que va a ser eliminado, debe de apuntar al nodo que sigue del nodo al que va a ser eliminado.",
+					    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
+								"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+					    	};
+					    	crear_explicacion(objExplicacion, "block");
 						}
 						
 					//}
@@ -6284,6 +6328,22 @@ function crear_tabla_imprimir_lista(){
 							'</td>' +
 							'<td>' +
 								'<button id="btn_imprimir_lista_explicacion_7_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
+							'</td>' +
+						'</tr>' +
+
+						'<tr>' +
+							'<td></td>' +
+							'<td>' +
+								'<span style="padding-left: 3em;">' +
+									//11 //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+									'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoAnterior): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+								'</span>' +
+							'</td>' +
+							'<td>' +
+								'<button id="btn_imprimir_lista_ejecutar_11_' + cont_imprimir + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+							'</td>' +
+							'<td>' +
+								'<button id="btn_imprimir_lista_explicacion_11_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
 							'</td>' +
 						'</tr>' +
             
@@ -6530,51 +6590,51 @@ function crear_tabla_imprimir_lista(){
                 
                 //7 //cout<<"valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
                 document.getElementById("btn_imprimir_lista_ejecutar_7_" + cont_imprimir).onclick = function() {
-
 					document.getElementById("btn_imprimir_lista_ejecutar_7_" + cont_imprimir).style.display = "none";
-
 					alert('Valor de (nodo *ptrNodoSiguiente): ' + objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key);
-                    
-                    document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).style.display = "block";
-                    
+                    document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).style.display = "block";
                 }
                 document.getElementById("btn_imprimir_lista_explicacion_7_" + cont_imprimir).onclick = function() {
-
                 	let objExplicacion = {
 			    		"titulo": "",
 			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
-
 			    	crear_explicacion(objExplicacion, "block");
+                }
 
+				// 11 //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+                document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).onclick = function() {
+					document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).style.display = "none";
+					alert('Valor de (nodo *ptrNodoAnterior): ' + objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaAnt.key);
+                    document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).style.display = "block";
+                }
+                document.getElementById("btn_imprimir_lista_explicacion_11_" + cont_imprimir).onclick = function() {
+                	let objExplicacion = {
+			    		"titulo": "",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del anterior nodo de la lista simplemente ligada.",
+			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
+						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+			    	};
+			    	crear_explicacion(objExplicacion, "block");
                 }
                 
                 //8 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
                 document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).onclick = function() {
-
 					document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).style.display = "none";
-
-
 					obj_ptrNodoActual.nodo_conectado.key = objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key;
-
 					actualizar();
-
                     document.getElementById("btn_imprimir_lista_ejecutar_4_" + cont_imprimir).style.display = "block";
-                    
                 }
                 document.getElementById("btn_imprimir_lista_explicacion_8_" + cont_imprimir).onclick = function() {
-
                 	let objExplicacion = {
 			    		"titulo": "",
 			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista simplemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
-
 			    	crear_explicacion(objExplicacion, "block");
-
                 }
 
             //}
@@ -6910,7 +6970,24 @@ function crear_tabla_buscar_en_la_lista(){
 							'<td>' +
 								'<button id="btn_buscar_en_lista_explicacion_14_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
 							'</td>' +
-						'</tr>' +	
+						'</tr>' +
+		//
+						// 17 //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+						'<tr>' +
+							'<td></td>' +
+							'<td>' +
+								'<span style="padding-left: 3em;">' +
+									//cout<<"valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
+									'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoAnterior): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+								'</span>' +
+							'</td>' +
+							'<td>' +
+								'<button id="btn_buscar_en_lista_ejecutar_17_' + cont_buscar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+							'</td>' +
+							'<td>' +
+								'<button id="btn_buscar_en_lista_explicacion_17_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
+							'</td>' +
+						'</tr>' +
 						
 					//}
 					'<tr>' +
@@ -7293,27 +7370,37 @@ function crear_tabla_buscar_en_la_lista(){
 				
 				//14 //cout<<"Valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
 				document.getElementById("btn_buscar_en_lista_ejecutar_14_" + cont_buscar).onclick = function() {
-
 					document.getElementById("btn_buscar_en_lista_ejecutar_14_" + cont_buscar).style.display = "none";
-					
 					alert('Valor de (nodo *ptrNodoSiguiente): '+ objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key);
-
-					document.getElementById("btn_buscar_en_lista_ejecutar_16_" + cont_buscar).style.display = "block";
-		
+					document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).style.display = "block";
 				}
-				document.getElementById("btn_buscar_en_lista_explicacion_14_" + cont_buscar).onclick = function() {
 
+				document.getElementById("btn_buscar_en_lista_explicacion_14_" + cont_buscar).onclick = function() {
 					let objExplicacion = {
 			    		"titulo": "",
 			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
-
 			    	crear_explicacion(objExplicacion, "block");
+				}
 
-				}	
-				
+				//17 //cout<<"Valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+				document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).onclick = function() {
+					document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).style.display = "none";
+					alert('Valor de (nodo *ptrNodoAnterior): '+ objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaAnt.key);
+					document.getElementById("btn_buscar_en_lista_ejecutar_16_" + cont_buscar).style.display = "block";
+				}
+
+				document.getElementById("btn_buscar_en_lista_explicacion_17_" + cont_buscar).onclick = function() {
+					let objExplicacion = {
+			    		"titulo": "",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del nodo que le precede al nodo actual de la lista simplemente ligada.",
+			    		"imagen_titulo": "Plan de programación 7 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
+						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+			    	};
+			    	crear_explicacion(objExplicacion, "block");
+				}
 			//}
 
 		//}else{
