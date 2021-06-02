@@ -24,7 +24,11 @@ Route::group(['middleware' => ['auth','roles:1,2,3']], function(){
 	Route::get('listas-simplemente-ligadas/index', 'ListasSimplementeLigadasController@index');
 	//PRINCIPAL lista simplemente ligada
 	Route::resource('listas-simplemente-ligadas','ListasSimplementeLigadasController');
+
 	//Listas doblemente ligadas
 	Route::get('listas-doblemente-ligadas/index', 'ListasDoblementeLigadasController@index');
+
+	//Listas simplemente ligadas circulares
+	Route::get('listas-simplemente-ligadas-circulares/index', 'ListasSimplementeLigadasCircularesController@index');
 
 });

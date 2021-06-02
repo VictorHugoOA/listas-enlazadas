@@ -1,7 +1,7 @@
-@extends('main.index')
+@extends('layouts.app')
 
 @section('titulo')
-<title>Proyecto Tesis</title>
+<title>Listas Simplemente Ligadas Circulares</title>
 @endsection
 
 @section('descripcion_keywords')
@@ -10,78 +10,386 @@
 @endsection
 
 @section('estilos')
+<link rel="stylesheet" type="text/css" href="{{ asset('../css/index.css') }}"></link>
 <style type="text/css">
 
 	canvas{
-		border: 1px solid black;
 		margin: 0px;
 		padding: 0px;
 	}
 
+	.btn-modal-opciones{
+		display: flex;
+	 	justify-content: center;
+	 	margin: 10px;
+	}
+
+	/* collapsible */
+
+	.btn_collapse {
+		background-color: #777;
+		color: white;
+		cursor: pointer;
+		padding: 12px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 14px;
+	}
+
+	.active, .btn_collapse:hover {
+		background-color: #555;
+	}
+
+	.active:after {
+		content: "\2212";
+	}
+
+	.collapse {
+		background-color: #f1f1f1;
+	}
+
+	.codigo{
+
+		padding: 10px;
+
+	}
+
+	/*card*/
+
+	.card {
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.3s;
+		width: 100%;
+		border-radius: 5px;
+		margin-bottom: 20px;
+	}
+
+	.card:hover {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+
+	.contenedor {
+		padding: 10px;
+	}
+
+	.card_h2{
+		color: #0d47a1;
+	}
+
+	/*tabla*/
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		margin: 10px;
+		font-size: 12px;
+	}
+	th, td {
+		padding: 2px;
+		padding-right: 10px;
+		text-align: left;
+	}
+
+	.btn{
+
+		font-size: 14px;
+		padding: 4px;
+		margin: 2px;
+
+	}
+
+
+
 </style>
 @endsection
 
-@section('titulo_h1')
-
-	<h1>Insertar</h1>
-
-@endsection
 
 
-@section('contenido')
+@section('content')
+<div id="div_titulo_h1" align="center">
+	<h1>Lista Simplemente Ligada Circular</h1>
+</div>
+
 <div class="container-fluid">
-
+	
 	<div class="row">
+			
+		<div id="div_contenedor" class="col-sm-6">
 
-		<div id="div_contenedor" class="col-sm-9">
+			<div id="div_canvas" class="col-sm-12" style="overflow-x: auto; overflow-y: auto;">
 
-			<div id="div_canvas" class="col-sm-12">
-
-				<div style="width: 1060px; height: 410px; overflow-x: auto; overflow-y: auto;">
-					
-					<canvas id="canvas" width="1050" height="400"></canvas>
-
-				</div>
+				<canvas id="canvas" width="1500" height="400"></canvas>
 
 			</div>
 
 			<div id="div_acciones" class="col-sm-12">
 
+				<h2>Acciones</h2>
 
+				<button id="btn_iniciar" class="btn btn-primary" type="button" onclick="iniciar();">Iniciar (Compilar y Ejecutar)</button>
+				
+				<div id="div_funciones_listas_simplemente_ligadas" style="display: none;">
+					<button id="btn_funciones_crear_nodo" class="btn btn-primary" type="button" onclick="modal_funciones_insertar_nodo();">Insertar nodo</button>
+					<button id="btn_funciones_eliminar_nodo" class="btn btn-primary" type="button" onclick="modal_funciones_eliminar_nodo();">Eliminar nodo</button>
+					<button id="btn_funciones_buscar_nodo" class="btn btn-primary" type="button" onclick="modal_funciones_buscar_en_lista();">Buscar nodo</button>
+					<button id="btn_funciones_modificar_nodo" class="btn btn-primary" type="button" onclick="modal_funciones_modificar_nodo();">Modificar nodo</button>
+					<button id="btn_funciones_imprimir_lista" class="btn btn-primary" type="button" onclick="modal_funciones_imprimir_lista();">Imprimir lista</button>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<div id="div_codigo" class="col-sm-6" style="padding: 10px; height: 600px; overflow-y: auto; border: solid 2px;">
+
+			<div id="div_codigo_contenedor" style="width: 100%;">
+				
+				
 
 			</div>
 
 		</div>
 
-		<div id="div" class="col-sm-3">
-			 
-		</div>
-
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="modal_dato_nodo" tabindex="-1" role="dialog" aria-labelledby="modal_dato_nodo" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="modal_dato_nodo">Ingrese dato</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-
-			<label for="input_dato">Dato:</label>
-			<input type="text" id="input_dato" name="input_dato">
-			<input type="hidden" id="input_pos_actualX" name="input_pos_actualX">
-			<input type="hidden" id="input_pos_actualY" name="input_pos_actualY">
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-			<button id="button_modal_aceptar" type="button" class="btn btn-primary" onclick="agregarNuevoNodo();">Aceptar</button>
-		</div>
+	<!-- Modal funciones crear nodo -->
+	<div id="modal_funciones_crear_nodo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_funciones_crear_nodo" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_funciones_crear_nodo">Crear nodo opciones</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn_insertar_nodo_inicial" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_insertar_nodo_inicial();">Insertar nodo inicial</button>
+					<button id="btn_insertar_nodo_inicio" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_insertar_nodo_inicio();">Insertar nodo al inicio de la lista</button>
+					<button id="btn_insertar_nodo_final" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_insertar_nodo_final();">Insertar nodo al final de la lista</button>
+					<button id="btn_insertar_antes_de" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_insertar_nodo_antes_de();">Insertar nodo antes de</button>
+					<button id="btn_insertar_despues_de" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_insertar_nodo_despues_de();">Insertar nodo despues de</button>
+				</div>
+			</div>
 		</div>
 	</div>
+
+	<!-- Modal funciones eliminar nodo -->
+	<div id="modal_funciones_eliminar_nodo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_funciones_eliminar_nodo" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_funciones_eliminar_nodo">Eliminar nodo opciones</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn_eliminar_inicio" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_eliminar_nodo_inicio();">Eliminar nodo inicio</button>
+					<button id="btn_eliminar_final" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_eliminar_nodo_final();">Eliminar nodo final</button>
+					<button id="btn_eliminar_con_informacion" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_eliminar_nodo_informacionx();">Eliminar nodo con información x</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal funciones buscar -->
+	<div id="modal_funciones_buscar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_funciones_buscar" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_funciones_buscar">Buscar nodo en la lista opciones</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn_buscar_en_lista" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_buscar_en_la_lista();">Buscar nodo en la lista</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal funciones modificar -->
+	<div id="modal_funciones_modificar_nodo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_funciones_modificar_nodo" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_funciones_modificar_nodo">Modificar (int dato) nodo opciones</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn_modificar_nodo" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_modificar_nodo();">Modificar (int dato) nodo</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal funciones imprimir lista -->
+	<div id="modal_funciones_imprimir_lista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_funciones_imprimir_lista" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_funciones_imprimir_lista">Imprimir lista opciones</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button id="btn_imprimir_lista" class="btn btn-primary btn-modal-opciones" type="button" data-dismiss="modal" onclick="crear_tabla_imprimir_lista();">Imprimir lista</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal dato -->
+	<div id="modal_dato_nodo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_dato_nodo" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_dato_nodo">Ingrese dato</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<label for="input_dato">Dato:</label>
+					<input type="text" id="input_dato" name="input_dato">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button id="btn_modal_dato_nodo_aceptar" type="button" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal dato modificar-->
+	<div id="modal_dato_nodo_modificar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_dato_nodo_modificar" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_dato_nodo_modificar">Ingrese el nuevo valor de (int dato)  del nodo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label for="input_dato_valor_modificar">(int dato):</label>
+					<input type="text" id="input_dato_valor_modificar" name="input_dato_valor_modificar">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button id="btn_modal_dato_nodo_modificar_aceptar" type="button" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal dato busqueda-->
+	<div id="modal_dato_busqueda" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_dato_busqueda" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="h5_modal_dato_busqueda">Ingrese el número a buscar: </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<label for="input_dato_busqueda">Dato a buscar:</label>
+					<input type="text" id="input_dato_busqueda" name="input_dato_busqueda">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button id="btn_modal_dato_busqueda_aceptar" type="button" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal alertas -->
+	<div class="modal fade" id="modal_advertencias" tabindex="-1" role="dialog" aria-labelledby="modal_advertencias" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div id="div_modal_body" class="modal-body">
+
+					<div id="div_modal_body_alerta" id="mensaje" class="alert alert-warning" role="alert">
+						<h4 class="alert-heading">Alerta!!</h4>
+						<div id="div_alertas">
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button id="btn_modal_advertencias_aceptar" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal explicación -->
+	<div class="modal fade" id="modal_explicacion" tabindex="-1" role="dialog" aria-labelledby="modal_explicacion" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div id="div_modal_body" class="modal-body">
+
+					<div class="container-fluid">
+						
+						<div class="row">
+							<div id="modal_explicacion_titulo" class="col-sm-12">
+							</div>
+						</div>
+
+						<div class="row">
+							<div id="modal_explicacion_detalles" class="col-sm-12">
+							</div>
+						</div>
+
+						<div id="div_plan_programacion" class="row">
+							<div class="col-sm-12">
+								<div class="accordion" id="accordion_plan_programacion">
+									<div class="card">
+									    <div class="card-header" id="heading_plan_programacion">
+									      	<h2 class="mb-0">
+									        	<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_plan_programacion" aria-expanded="true" aria-controls="collapse_plan_programacion">
+									          		Ver plan de programación
+									        	</button>
+									      	</h2>
+									    </div>
+									    <div id="collapse_plan_programacion" class="collapse" aria-labelledby="heading_plan_programacion" data-parent="#accordion_plan_programacion">
+									      <div class="card-body">
+									      	<div class="row">
+									      		<div id="modal_explicacion_plan_programacion_titulo" class="col-sm-12">
+												</div>
+										      	<div id="modal_explicacion_plan_programacion_imagen" class="col-sm-12">
+										      	</div>
+									      	</div>
+									      </div>
+									    </div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button id="btn_modal_explicacion_cerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="alert alert-success main-alert" role="alert">
+	  	Función terminada.
 	</div>
 
 </div>
@@ -89,519 +397,662 @@
 
 @section('scripts')
 
+<!--funciones reutilizables-->
+<script src="{{ asset('../js/funciones-reutilizables/index.js') }}"></script>
+
+<!--funciones exclusivas-->
+<script src="{{ asset('../js/lista-simplemente-ligada-circular/funciones/index.js') }}"></script>
+
+<!--funciones listas simplemente ligadas-->
+<script src="{{ asset('../js/lista-simplemente-ligada-circular/inicio/index.js') }}"></script>
+
 <script type="text/javascript">
 
-	/*
-	Declaracion de objectos
-	*/
+	var empezar = false;
+
 	var obj_nodo = {
 
-		contenedor_principal: {
-			x: null,
-			y: null,
-			width: 205, //195
-			height: 123,
+		"contenedor_principal": {
+			"width": 175,
+			"height": 74,
 		},
 
-		contenedor_liga_endpoint: {
-			x: null,
-			y: null,
-			width: 30,
-			height: 30,
+		"contenedor_direccion_memoria": {
+			"width": 175,
+			"height": 22,
 		},
 
-		contenedor_direccion_memoria: {
-			x: null,
-			y: null,
-			width: 185,
-			height: 50,
+		"contenedor_dato": {
+			"width": 70,
+			"height": 52,
 		},
 
-		contenedor_dato: {
-			x: null,
-			y: null,
-			width: 70,
-			height: 35,
+		"contenedor_ptrLiga": {
+			"width": 105,
+			"height": 52,
 		},
 
-		contenedor_ptrLiga: {
-			x: null,
-			y: null,
-			width: 105,
-			height: 35,
+		"nodo_disenio": {
+			"margen_lineWidth": 2,
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+			"texto_color": '#000',
+			"texto_font": '14px Arial',
+			"texto_font_valores": 'bold 14px Arial',
+			"texto_variables_color": '#4a148c',
 		},
 
-		contenedor_ptrLiga_conexion: {
-			x: null,
-			y: null,
-			width: 20,
-			height: 20,
-		},
-
-		nodo_disenio: {
-			margen_lineWidth: 2,
-			margen_color: '#000',
-			relleno_color: '#fff',
-			texto_color: '#000',
-			texto_font: '12px Arial',
-			texto_font_valores: 'bold 14px Arial',
-			texto_variables_color: '#5d4037',
+		"nodo_seleccion_disenio": {
+			"margen_lineWidth": 4,
+			"margen_color": '#03a9f4',
 		},
 
 	};
 
 	var obj_ptrNodoInicio = {
 		
-		contenedor_principal: {
-			x: 10,
-			y: 10,
-			width: 194,
-			height: 64,
+		"contenedor_principal": {
+			"x": 10,
+			"y": 10,
+			"width": 137,
+			"height": 50,
 		},
 
-		disenio: {
-			margen_lineWidth: '2',
-			margen_color: '#000',
-			relleno_color: '#fff',
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
 		},
 
-		ptrLiga: {
-			x: 150,
-			y: 20,
-			width: 44,
-			height: 44,
+		"ptrLiga": {
+			"x": 107,
+			"y": 20,
+			"width": 30,
+			"height": 30,
 		},
 
-		texto_disenio: {
-			font: '12px Arial',
-			color: '#000',
-			size: 12,
-			espacio: 2,
-			font_valor: 'bold 14px Arial',
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#0d47a1',
 		},
 
-		nodo_conectado: {
-			conectado: false,
-			nodo_key: null,
-			direccion_memoria: "null",
+		"nombre": "ptrNodoInicio",
+
+		"declarada": false,
+
+		"nodo_conectado": {
+			"key": null,
 		},
 
 	};
 
-	var canvas, ctx, objetos, objetoActual;
-	var letra_linea_base = "middle";
+	var obj_ptrNodoFinal = {
 
-	var mouseIsDownPtrNodoInicio = false;
+		"contenedor_principal": {
+			"x": 10,
+			"y": 331,
+			"width": 137,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"ptrLiga": {
+			"x": 107,
+			"y": 341,
+			"width": 30,
+			"height": 30,
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#b71c1c',
+		},
+
+		"nombre": "ptrNodoFinal",
+
+		"declarada": false,
+		
+		"nodo_conectado": {
+			"key": null,
+		},
+
+	};
+
+	//variables que utilizan las funciones de c++
+
+	var obj_var_encontrado = {
+		
+		"contenedor_principal": {
+			"x": 10,
+			"y": 70,
+			"width": 80,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"valor_color": '#000',
+		},
+
+		"nombre": "encontrado",
+		"valor": true,
+
+		"declarada": false,
+
+	};
+
+	var obj_var_busqueda = {
+		
+		"contenedor_principal": {
+			"x": 10,
+			"y": 130,
+			"width": 80,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"valor_color": '#000',
+		},
+
+		"nombre": "busqueda",
+		"valor": 0,
+		
+		"declarada": false,
+
+	};
+
+	//apuntadores que utilizan las funciones de c++
+
+	var obj_ptrNodoNuevo = {
+		
+		"contenedor_principal": {
+			"x": 10,
+			"y": 190,
+			"width": 137,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"ptrLiga": {
+			"x": 107,
+			"y": 200,
+			"width": 30,
+			"height": 30,
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#000',
+		},
+
+		"nombre": "ptrNodoNuevo",
+
+		"declarada": false,
+
+		"nodo_conectado": {
+			"key": null,
+		},
+
+	};
+
+	var obj_ptrNodoActual = {
+		
+		"contenedor_principal": {
+			"x": 167,
+			"y": 10,
+			"width": 137,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"ptrLiga": {
+			"x": 264,
+			"y": 20,
+			"width": 30,
+			"height": 30,
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#000',
+		},
+
+		"nombre": "ptrNodoActual",
+
+		"declarada": false,
+
+		"nodo_conectado": {
+			"key": null,
+		},
+
+	};
+
+	var obj_ptrNodoEliminar = {
+		
+		"contenedor_principal": {
+			"x": 167,
+			"y": 10,
+			"width": 137,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"ptrLiga": {
+			"x": 264,
+			"y": 20,
+			"width": 30,
+			"height": 30,
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#000',
+		},
+
+		"nombre": "ptrNodoEliminar",
+
+		"declarada": false,
+
+		"nodo_conectado": {
+			"key": null,
+		},
+
+	};
+
+	var obj_ptrNodoAnterior = {
+		
+		"contenedor_principal": {
+			"x": 167,
+			"y": 10,
+			"width": 137,
+			"height": 50,
+		},
+
+		"disenio": {
+			"margen_lineWidth": '2',
+			"margen_color": '#000',
+			"relleno_color": '#fff',
+		},
+
+		"ptrLiga": {
+			"x": 264,
+			"y": 20,
+			"width": 30,
+			"height": 30,
+		},
+
+		"texto_disenio": {
+			"font": '12px Arial',
+			"color": '#000',
+			"size": 12,
+			"espacio": 2,
+			"font_valor": 'bold 14px Arial',
+			"direccion_memoria_color": '#000',
+		},
+
+		"nombre": "ptrNodoAnterior",
+
+		"declarada": false,
+
+		"nodo_conectado": {
+			"key": null,
+		},
+
+	};
+
+	//
+
+	var canvas, ctx, objetos, objetoActual;
+
 	var mouseIsDown = false;
-	var mouseIsDownLiga = false;
+	var clickDetectado = false;
+	var mouseIsDown_ptrNodoNuevo = false;
+	var mouseIsDown_ptrNodoActual = false;
+	var mouseIsDown_ptrNodoEliminar = false;
+	var mouseIsDown_ptrNodoAnterior = false;
 
 	var click_x, click_y;
 	var clickLiga_x, clickLiga_y;
 
 	window.onload = function(){
 
-		objetos = [];
+		objetos = {};
 
 		canvas = document.getElementById("canvas");
 		canvas.width = canvas.scrollWidth;
 		canvas.height = canvas.scrollHeight;
 		ctx = canvas.getContext("2d");
 
-		dibujar_ptrNodoInicio();
+	};
+
+	function iniciar(){
+
+		crear_tabla_declaracion_variables_globales();
+
+		/*EVENTS DE MOUSE SOBRE EL CANVAS*/
 
 		canvas.onmousedown = function(event) {
 
-			objetoActual = null;
+			if(empezar){
 
-			mouseIsDown = true;
-			mouseIsDownLiga = false;
-			mouseIsDownPtrNodoInicio = false;
+				objetoActual = null;
 
-			conexionNodos = false;
+				mouseIsDown = true;
+				clickDetectado = false;
+				mouseIsDown_ptrNodoNuevo = false;
+				mouseIsDown_ptrNodoActual = false;
+				mouseIsDown_ptrNodoEliminar = false;
+				mouseIsDown_ptrNodoAnterior = false;
 
-			let obj_domRect = getDomRect(event);
-			let pos_actualX = obj_domRect.pos_actualX;
-			let pos_actualY = obj_domRect.pos_actualY;
+				let obj_domRect = getDomRect(event);
+				let pos_actualX = obj_domRect.pos_actualX;
+				let pos_actualY = obj_domRect.pos_actualY;
 
-	      	click_x = pos_actualX;
-	      	click_y = pos_actualY;
+				click_x = pos_actualX;
+				click_y = pos_actualY;
 
-			//se detecto ptrNodoInicio
-			if(obj_ptrNodoInicio.ptrLiga.x < pos_actualX
-					&& (obj_ptrNodoInicio.ptrLiga.width + obj_ptrNodoInicio.ptrLiga.x  > obj_domRect.pos_actualX)
-					&& obj_ptrNodoInicio.ptrLiga.y < pos_actualY
-					&& (obj_ptrNodoInicio.ptrLiga.height + obj_ptrNodoInicio.ptrLiga.y > pos_actualY)
-					//
-					&& obj_ptrNodoInicio.nodo_conectado.conectado == false){
-						
-						mouseIsDownPtrNodoInicio = true;
-						
-			}else{
-
-				let objeto = null;
-
-				for(var key in objetos){
-
-					objeto = objetos[key].key_objecto;
-
-					//verifica cuadro principal
-					if(objeto.contenedorPrincipal_x < pos_actualX 
-						&& (objeto.contenedorPrincipal_width + objeto.contenedorPrincipal_x  > obj_domRect.pos_actualX)
-						&& objeto.contenedorPrincipal_y < pos_actualY 
-						&& (objeto.contenedorPrincipal_height + objeto.contenedorPrincipal_y > pos_actualY)){
-
-						objetoActual = objeto;
-
-						//verificar cuadro de liga
-						if(objetoActual.contenedorLiga_x < pos_actualX
-							&& (objetoActual.liga_width + objetoActual.contenedorLiga_x > pos_actualX)
-							&& objetoActual.contenedorLiga_y < pos_actualY
-							&& (objetoActual.liga_height + objetoActual.contenedorLiga_y > pos_actualY)
-							//
-							&& objetoActual.ptrNodoSig.conectado == false){
-							
-							mouseIsDownLiga = true; 
-
-							break;
-
-						}
-
-						break;
-							
+				if((obj_ptrNodoNuevo.declarada && detectar_ptrNodo(obj_ptrNodoNuevo, pos_actualX, pos_actualY)) 
+				|| (obj_ptrNodoActual.declarada && detectar_ptrNodo(obj_ptrNodoActual, pos_actualX, pos_actualY))
+				|| (obj_ptrNodoEliminar.declarada && detectar_ptrNodo(obj_ptrNodoEliminar, pos_actualX, pos_actualY))
+				|| (obj_ptrNodoAnterior.declarada && detectar_ptrNodo(obj_ptrNodoAnterior, pos_actualX, pos_actualY))){
+					
+					if(obj_ptrNodoNuevo.declarada && detectar_ptrNodo(obj_ptrNodoNuevo, pos_actualX, pos_actualY) && !clickDetectado){
+						mouseIsDown_ptrNodoNuevo = true;
+						clickDetectado = true;
 					}
 
+					if(obj_ptrNodoActual.declarada && detectar_ptrNodo(obj_ptrNodoActual, pos_actualX, pos_actualY) && !clickDetectado){
+						mouseIsDown_ptrNodoActual = true;
+						clickDetectado = true;
+					}
+
+					if(obj_ptrNodoEliminar.declarada && detectar_ptrNodo(obj_ptrNodoEliminar, pos_actualX, pos_actualY) && !clickDetectado){
+						mouseIsDown_ptrNodoEliminar = true;
+						clickDetectado = true;
+					}
+
+					if(obj_ptrNodoAnterior.declarada && detectar_ptrNodo(obj_ptrNodoAnterior, pos_actualX, pos_actualY) && !clickDetectado){
+						mouseIsDown_ptrNodoAnterior = true;
+						clickDetectado = true;
+					}
+
+				}else{
+
+					let objeto = null;
+
+					for(var key in objetos){
+
+						objeto = objetos[key];
+
+						//verifica cuadro principal
+						if(objeto.nodo_estructura.contenedor_principal.x < pos_actualX 
+							&& (objeto.nodo_estructura.contenedor_principal.width + objeto.nodo_estructura.contenedor_principal.x  > pos_actualX)
+							&& objeto.nodo_estructura.contenedor_principal.y < pos_actualY 
+							&& (objeto.nodo_estructura.contenedor_principal.height + objeto.nodo_estructura.contenedor_principal.y > pos_actualY)){
+
+							objetoActual = objeto;
+
+							break;
+								
+						}
+
+					}
+					
 				}
 
+				actualizar();
+
 			}
-
-			actualizar();
-
-			//console.log("onmousedown " + objetoActual.id + " " + objetoActual.dato);
 
 		};
 
 		canvas.onmousemove = function(event) {
 
-			let obj_domRect = getDomRect(event);
-			let pos_actualX = obj_domRect.pos_actualX;
-			let pos_actualY = obj_domRect.pos_actualY;
+			if(empezar){
 
-			//se mueve el nodo
-			if(mouseIsDown && !mouseIsDownLiga && !mouseIsDownPtrNodoInicio){
+				let obj_domRect = getDomRect(event);
+				let pos_actualX = obj_domRect.pos_actualX;
+				let pos_actualY = obj_domRect.pos_actualY;
 
-				if(objetoActual != null){
+				if(mouseIsDown){
+
+					let mov_x = pos_actualX - click_x;
+					let mov_y = pos_actualY - click_y;
+
+					//mover el nodo
+					if(objetoActual != null){
+						
+						//objetoActual.nodo_estructura.contenedor_principal.
+						objetoActual.nodo_estructura.contenedor_principal.x = objetoActual.nodo_estructura.contenedor_principal.x + mov_x;
+						objetoActual.nodo_estructura.contenedor_principal.y = objetoActual.nodo_estructura.contenedor_principal.y + mov_y;
+
+						//objetoActual.nodo_estructura.titulo_dir_mem.
+						objetoActual.nodo_estructura.titulo_dir_mem.x = objetoActual.nodo_estructura.titulo_dir_mem.x + mov_x;
+						objetoActual.nodo_estructura.titulo_dir_mem.y = objetoActual.nodo_estructura.titulo_dir_mem.y + mov_y;
+
+						//
+
+						//objetoActual.dato_estructura.contenedor.
+						objetoActual.dato_estructura.contenedor.x = objetoActual.dato_estructura.contenedor.x + mov_x;
+						objetoActual.dato_estructura.contenedor.y = objetoActual.dato_estructura.contenedor.y + mov_y;
+
+						//objetoActual.dato_estructura.titulo.
+						objetoActual.dato_estructura.titulo.x = objetoActual.dato_estructura.titulo.x + mov_x;
+						objetoActual.dato_estructura.titulo.y = objetoActual.dato_estructura.titulo.y + mov_y;
+
+						//objetoActual.dato_estructura.valor.
+						objetoActual.dato_estructura.valor.x = objetoActual.dato_estructura.valor.x + mov_x;
+						objetoActual.dato_estructura.valor.y = objetoActual.dato_estructura.valor.y + mov_y;
+
+						//
+
+						//objetoActual.ptrLiga_estructura.contenedor.
+						objetoActual.ptrLiga_estructura.contenedor.x = objetoActual.ptrLiga_estructura.contenedor.x + mov_x;
+						objetoActual.ptrLiga_estructura.contenedor.y = objetoActual.ptrLiga_estructura.contenedor.y + mov_y;
+
+						//objetoActual.ptrLiga_estructura.titulo.
+						objetoActual.ptrLiga_estructura.titulo.x = objetoActual.ptrLiga_estructura.titulo.x + mov_x;
+						objetoActual.ptrLiga_estructura.titulo.y = objetoActual.ptrLiga_estructura.titulo.y + mov_y;
+
+						//objetoActual.ptrLiga_estructura.valor.
+						objetoActual.ptrLiga_estructura.valor.x = objetoActual.ptrLiga_estructura.valor.x + mov_x;
+						objetoActual.ptrLiga_estructura.valor.y = objetoActual.ptrLiga_estructura.valor.y + mov_y;
+
+					}
+
+					if(mouseIsDown_ptrNodoNuevo){
+						mover_puntero(obj_ptrNodoNuevo, mov_x, mov_y);
+					}
 					
-		      		let mov_x = pos_actualX - click_x;
-		      		let mov_y = pos_actualY - click_y;
+					if(mouseIsDown_ptrNodoActual){
+						mover_puntero(obj_ptrNodoActual, mov_x, mov_y);
+					}
 
-		      		//contenedor principal
-					objetoActual.contenedorPrincipal_x = objetoActual.contenedorPrincipal_x + mov_x;
-					objetoActual.contenedorPrincipal_y = objetoActual.contenedorPrincipal_y + mov_y;
+					if(mouseIsDown_ptrNodoEliminar){
+						mover_puntero(obj_ptrNodoEliminar, mov_x, mov_y);
+					}
 
-					//contenedor principal titulo
-					objetoActual.contenedorPrincipal_titulo_x = objetoActual.contenedorPrincipal_titulo_x + mov_x;
-					objetoActual.contenedorPrincipal_titulo_y = objetoActual.contenedorPrincipal_titulo_y + mov_y;
-
-					//contenedor principal texto
-					objetoActual.contenedorPrincipal_texto_x = objetoActual.contenedorPrincipal_texto_x + mov_x;
-					objetoActual.contenedorPrincipal_texto_y = objetoActual.contenedorPrincipal_texto_y + mov_y;
-
-					//contenedor direccion memoria posicion
-					objetoActual.contenedorDireccionMemoria_x = objetoActual.contenedorDireccionMemoria_x + mov_x;
-					objetoActual.contenedorDireccionMemoria_y = objetoActual.contenedorDireccionMemoria_y + mov_y;
-
-					//contenedor principal Direccion memoria
-					objetoActual.contenedorPrincipal_dirmem_x = objetoActual.contenedorPrincipal_dirmem_x + mov_x;
-					objetoActual.contenedorPrincipal_dirmem_y = objetoActual.contenedorPrincipal_dirmem_y + mov_y;
-
-					objetoActual.contenedorDireccionMemoriaLigaEndPoint_x = objetoActual.contenedorDireccionMemoriaLigaEndPoint_x + mov_x;
-					objetoActual.contenedorDireccionMemoriaLigaEndPoint_y = objetoActual.contenedorDireccionMemoriaLigaEndPoint_y + mov_y;
-
-					// ##########################################################################################
-
-					objetoActual.contenedorDato_x = objetoActual.contenedorDato_x + mov_x;
-					objetoActual.contenedorDato_y = objetoActual.contenedorDato_y + mov_y;
-
-					//dato texto
-					objetoActual.dato_texto_x = objetoActual.dato_texto_x + mov_x;
-					objetoActual.dato_texto_y = objetoActual.dato_texto_y + mov_y;
-					//dato valor
-					objetoActual.dato_valor_x = objetoActual.dato_valor_x + mov_x;
-					objetoActual.dato_valor_y = objetoActual.dato_valor_y + mov_y;
-
-					objetoActual.contenedorLiga_x = objetoActual.contenedorLiga_x + mov_x;
-					objetoActual.contenedorLiga_y = objetoActual.contenedorLiga_y + mov_y;
-
-					objetoActual.ptrLiga_texto_x = objetoActual.ptrLiga_texto_x + mov_x;
-					objetoActual.ptrLiga_texto_y = objetoActual.ptrLiga_texto_y + mov_y;
-
-					objetoActual.ptrLiga_valor_x = objetoActual.ptrLiga_valor_x + mov_x;
-					objetoActual.ptrLiga_valor_y = objetoActual.ptrLiga_valor_y + mov_y;
+					if(mouseIsDown_ptrNodoAnterior){
+						mover_puntero(obj_ptrNodoAnterior, mov_x, mov_y);
+					}
 
 					actualizar();
 
 					click_x = pos_actualX;
-	      			click_y = pos_actualY;
-
+					click_y = pos_actualY;
+					
 				}
-				
-			}
-
-			//se mueve la liga
-			if(mouseIsDownLiga){
-
-				let x_inicio = objetoActual.contenedorLiga_x + (objetoActual.liga_width / 2);
-				let y_inicio = objetoActual.contenedorLiga_y + (objetoActual.liga_height / 2);
-
-		      	actualizar();
-				dibujar_liga(false, x_inicio, y_inicio, pos_actualX, pos_actualY);
 
 			}
-
-			//se mueve liga ptrNodoInicio
-			if(mouseIsDownPtrNodoInicio){
-
-				let x_inicio = obj_ptrNodoInicio.ptrLiga.x + (obj_ptrNodoInicio.ptrLiga.width / 2);
-				let y_inicio = obj_ptrNodoInicio.ptrLiga.y + (obj_ptrNodoInicio.ptrLiga.height / 2);
-
-				actualizar();
-				dibujar_liga(true, x_inicio, y_inicio, pos_actualX, pos_actualY);
-
-			}
-
-			//console.log("onmousemove " + objetoActual);
 
 		};
 
 		canvas.onmouseup = function(event) {
 
-			mouseIsDown = false;
+			if(empezar){
 
-			if(mouseIsDownLiga || mouseIsDownPtrNodoInicio){
+				mouseIsDown = false;
 
-				//determinar posicion donde el mouse fue soltado
-				let obj_domRect = getDomRect(event);
-				let pos_actualX = obj_domRect.pos_actualX;
-				let pos_actualY = obj_domRect.pos_actualY;
-
-				let objeto = null;
-
-				//verificar que la flecha este dentro del rango de algun nodo
-				for(var key in objetos){
-					
-					objeto = objetos[key].key_objecto;
-
-					//verifica en que nodo fue soltado la flecha
-					if(objeto.contenedorPrincipal_x < pos_actualX
-						&& (objeto.contenedorPrincipal_width + objeto.contenedorPrincipal_x  > pos_actualX)
-						&& objeto.contenedorPrincipal_y < pos_actualY
-						&& (objeto.contenedorPrincipal_height + objeto.contenedorPrincipal_y > pos_actualY)){
-
-						let x_inicio = null;
-						let y_inicio = null;
-
-						let x_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_x + (objeto.contenedorDireccionMemoriaLigaEndPoint_width / 2);
-						let y_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_y + (objeto.contenedorDireccionMemoriaLigaEndPoint_height / 2);
-
-						if(mouseIsDownLiga 
-							&& objetoActual.ptrNodoSig.conectado == false && (objeto.nodo_conectado.conectado == false || objeto.esNodoInicio == false)){
-
-							x_inicio = objetoActual.contenedorLiga_x + (objetoActual.liga_width / 2);
-							y_inicio = objetoActual.contenedorLiga_y + (objetoActual.liga_height / 2);
-
-							//objeto actual se liga con el objeto seleccionado
-							objetoActual.ptrNodoSig.conectado = true;
-							objetoActual.ptrNodoSig.nodo_sig_key = objeto.key;
-							objetoActual.valor_ptrLiga = objeto.direccion_memoria
-							
-							//objeto seleccionado se liga con el objeto actual
-							objeto.nodo_conectado.conectado = true;
-							objeto.nodo_conectado.nodo_key = objetoActual.key;
-
-							dibujar_liga(false, x_inicio, y_inicio, x_fin, y_fin);
-
-						}else{
-
-							if(mouseIsDownPtrNodoInicio){
-
-								x_inicio = obj_ptrNodoInicio.ptrLiga.x + (obj_ptrNodoInicio.ptrLiga.width / 2);
-								y_inicio = obj_ptrNodoInicio.ptrLiga.y + (obj_ptrNodoInicio.ptrLiga.height / 2);
-
-								obj_ptrNodoInicio.nodo_conectado.conectado = true;
-								obj_ptrNodoInicio.nodo_conectado.nodo_key = objeto.key;
-								obj_ptrNodoInicio.nodo_conectado.direccion_memoria = objeto.direccion_memoria
-								
-								objeto.esNodoInicio = true;
-
-								dibujar_liga(true, x_inicio, y_inicio, x_fin, y_fin);
-
-							}
-
-						}
-
-						break;
-
-					}
-
-				}
-
-			}
-
-			mouseIsDownLiga = false;
-			mouseIsDownPtrNodoInicio = false;
-
-			actualizar();
-
-		};
-
-		canvas.ondblclick = function(event) {
-
-			if(objetoActual == null){
-
-				let obj_domRect = getDomRect(event);
-				let pos_actualX = obj_domRect.pos_actualX;
-				let pos_actualY = obj_domRect.pos_actualY;
-
-				document.getElementById("input_pos_actualX").value = pos_actualX;
-				document.getElementById("input_pos_actualY").value = pos_actualY;
-
-				$('#modal_dato_nodo').modal('show');
+				actualizar();
 
 			}
 
 		};
-
-	};
-
-	//FUNCIONES AGREGAR NUEVO NODO
-
-	function agregarNuevoNodo(){
-
-		let dato = document.getElementById("input_dato").value;
-
-		let pos_actualX = parseInt(document.getElementById("input_pos_actualX").value);
-		let pos_actualY = parseInt(document.getElementById("input_pos_actualY").value);
-
-		if(!validarDato(dato)){
-
-			let key_objecto = objetos.length;
-
-			//Crear nuevo nodo
-			objetos.push({
-
-				key_objecto: {
-
-					esNodoInicio: false,
-
-					key: key_objecto,
-					direccion_memoria: generarDireccionMemoria(),
-					//valor dato
-					valor_dato: dato,
-					//liga
-					valor_ptrLiga: "null",
-
-					//
-					ptrNodoSig: {
-						conectado: false,
-						nodo_sig_key: null,
-					},
-
-					//
-					nodo_conectado: {
-						conectado: false,
-						nodo_key: null,
-					},
-
-					//contenedor principal posicion
-					contenedorPrincipal_x: pos_actualX,
-					contenedorPrincipal_y: pos_actualY,
-					//contenedor principal medidas
-					contenedorPrincipal_width: obj_nodo.contenedor_principal.width,
-					contenedorPrincipal_height: obj_nodo.contenedor_principal.height,
-
-					//texto Struct Nodo
-					contenedorPrincipal_titulo_x: pos_actualX + 67.50,
-					contenedorPrincipal_titulo_y: pos_actualY + 14,
-
-					// #############################################################################################################
-
-					//contenedor direccion memoria posicion
-					contenedorDireccionMemoria_x: pos_actualX + 10,
-					contenedorDireccionMemoria_y: pos_actualY + 18,
-					//contenedor direccion memoria medidas
-					contenedorDireccionMemoria_width: obj_nodo.contenedor_direccion_memoria.width,
-					contenedorDireccionMemoria_height: obj_nodo.contenedor_direccion_memoria.height,
-
-					//
-					contenedorDireccionMemoriaLigaEndPoint_x: pos_actualX + 20,
-					contenedorDireccionMemoriaLigaEndPoint_y: pos_actualY + 28,
-					//
-					contenedorDireccionMemoriaLigaEndPoint_width: obj_nodo.contenedor_liga_endpoint.width,
-					contenedorDireccionMemoriaLigaEndPoint_height: obj_nodo.contenedor_liga_endpoint.height,
-
-					//texto Direccion de memoria:
-					contenedorPrincipal_texto_x: obj_nodo.contenedor_liga_endpoint.width + pos_actualX + 24,
-					contenedorPrincipal_texto_y: obj_nodo.contenedor_liga_endpoint.height + pos_actualY + 10,
-
-					//texto Direccion memoria del nodo
-					contenedorPrincipal_dirmem_x: obj_nodo.contenedor_liga_endpoint.width + pos_actualX + 24,
-					contenedorPrincipal_dirmem_y: obj_nodo.contenedor_liga_endpoint.height + pos_actualY + 22,
-
-					// #############################################################################################################
-
-					//contenedor Dato posicion
-					contenedorDato_x: pos_actualX + 10,
-					contenedorDato_y: pos_actualY + 60 + 18,
-					//contenedor Dato medidas
-					dato_width: obj_nodo.contenedor_dato.width,
-					dato_height: obj_nodo.contenedor_dato.height,
-					//dato texto Dato (int)
-					dato_texto_x: pos_actualX + 12,
-					dato_texto_y: pos_actualY + 74 + 18,
-					//dato texto Valor
-					dato_valor_x: pos_actualX + 12,
-					dato_valor_y: pos_actualY + 88 + 18,
-
-					//contenedor Liga posicion
-					contenedorLiga_x: pos_actualX + obj_nodo.contenedor_dato.width + 20,
-					contenedorLiga_y: pos_actualY + 60 + 18,
-					//contenedor Liga medidas
-					liga_width: obj_nodo.contenedor_ptrLiga.width,
-					liga_height: obj_nodo.contenedor_ptrLiga.height,
-					//direccion memoria texto 
-					ptrLiga_texto_x: pos_actualX + obj_nodo.contenedor_dato.width + 22,
-					ptrLiga_texto_y: pos_actualY + 74 + 18,
-					//direccion memoria Valor
-					ptrLiga_valor_x: pos_actualX + obj_nodo.contenedor_dato.width + 22,
-					ptrLiga_valor_y: pos_actualY + 88 + 18,
-
-				}
-				
-			});
-
-		}else{
-
-			
-
-		}
-
-		$('#modal_dato_nodo').modal('hide');
-
-		actualizar();
-
-		document.getElementById("input_dato").value = "";
 
 	}
 
-	/*
-	Funcion para validar dato:
-		-no sea vacio
-	*/
-	function validarDato(dato){
+	//FUNCIONES CREAR NUEVO NODO
 
-		let datoLocal = dato.trim();
+	function crearNuevoNodo(objDireccionMemoria){
 
-		return (datoLocal === "" || datoLocal === null || datoLocal === undefined);
+		//let dato = document.getElementById("input_dato").value;
+
+		let direccion_memoria = objDireccionMemoria.direccion_memoria;
+
+		let pos_actualX = 180;
+		let pos_actualY = 165;
+
+		let key_objecto = direccion_memoria;
+
+		//Crear nuevo nodo
+		objetos[key_objecto] = {
+
+			"key": key_objecto,
+			"direccion_memoria": direccion_memoria,
+
+			"dato": {
+				"valor": null,
+			},
+
+			"ptrLigaSig": {
+				"inicializado": false,
+				"key": null,
+			},
+
+			"nodo_estructura": {
+
+				"contenedor_principal": {
+					"x": pos_actualX,
+					"y": pos_actualY,
+					"width": obj_nodo.contenedor_principal.width,
+					"height": obj_nodo.contenedor_principal.height,
+				},
+
+				"titulo_dir_mem": {
+					"x": pos_actualX + (obj_nodo.contenedor_principal.width / 2),
+					"y": pos_actualY + 16,
+				},
+
+			},
+
+			"dato_estructura": {
+
+				"contenedor": {
+					"x": pos_actualX,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height,
+					"width": obj_nodo.contenedor_dato.width,
+					"height": obj_nodo.contenedor_dato.height,
+				},
+
+				"titulo": {
+					"x": pos_actualX + 10,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height + 22,
+				},
+
+				"valor": {
+					"x": pos_actualX + 10,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height + 40,
+				},
+				
+			},
+
+			"ptrLiga_estructura": {
+
+				"contenedor": {
+					"x": pos_actualX + obj_nodo.contenedor_dato.width,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height,
+					"width": obj_nodo.contenedor_ptrLiga.width,
+					"height": obj_nodo.contenedor_ptrLiga.height,
+				},
+
+				"titulo": {
+					"x": pos_actualX + obj_nodo.contenedor_dato.width + 10,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height + 22,
+				},
+
+				"valor": {
+					"x": pos_actualX + obj_nodo.contenedor_dato.width + 10,
+					"y": pos_actualY + obj_nodo.contenedor_direccion_memoria.height + 40,
+				},
+
+			},
+
+		};
+
+		actualizar();
+
+		return key_objecto;
 
 	}
 
@@ -612,206 +1063,377 @@
 		//limpiar el canvas
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		//dibujar ptrNodoInicio
-		dibujar_ptrNodoInicio();
+		//dibujar apuntadores
 
-		//dibujar nodos y flechas
+		if(obj_ptrNodoInicio.declarada){
+
+			dibujar_puntero(obj_ptrNodoInicio);
+
+		}
+
+		if(obj_ptrNodoFinal.declarada){
+
+			dibujar_puntero(obj_ptrNodoFinal);
+
+		}
+
+		if(obj_ptrNodoNuevo.declarada){
+
+			dibujar_puntero(obj_ptrNodoNuevo);
+
+		}
+
+		//punteros que se mueven
+
+		if(obj_ptrNodoAnterior.declarada){
+
+			dibujar_puntero(obj_ptrNodoAnterior);
+
+		}
+
+		if(obj_ptrNodoActual.declarada){
+
+			dibujar_puntero(obj_ptrNodoActual);
+
+		}
+
+		if(obj_ptrNodoEliminar.declarada){
+
+			dibujar_puntero(obj_ptrNodoEliminar);
+
+		}
+
+		
+
+		//dibujar nodos
 		let objeto = null;
 
 		for(var key in objetos){
 
-			objeto = objetos[key].key_objecto;
+			objeto = objetos[key];
 
 			dibujar_nodo(objeto);
 
-			if(objeto.esNodoInicio){
+		}
 
-				//dibujar_liga_nodo_inicio
+		//dibujar flechas
+		for(var key in objetos){
+
+			objeto = objetos[key];
+
+			if(obj_ptrNodoNuevo.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
+				let x_inicio = obj_ptrNodoNuevo.ptrLiga.x + (obj_ptrNodoNuevo.ptrLiga.width / 2);
+				let y_inicio = obj_ptrNodoNuevo.ptrLiga.y + (obj_ptrNodoNuevo.ptrLiga.height / 2);
+
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
+
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoNuevo.texto_disenio.direccion_memoria_color);
+
+			}
+
+			if(obj_ptrNodoActual.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
+				let x_inicio = obj_ptrNodoActual.ptrLiga.x + (obj_ptrNodoActual.ptrLiga.width / 2);
+				let y_inicio = obj_ptrNodoActual.ptrLiga.y + (obj_ptrNodoActual.ptrLiga.height / 2);
+
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
+
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoActual.texto_disenio.direccion_memoria_color);
+
+			}
+
+			if(obj_ptrNodoEliminar.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
+				let x_inicio = obj_ptrNodoEliminar.ptrLiga.x + (obj_ptrNodoEliminar.ptrLiga.width / 2);
+				let y_inicio = obj_ptrNodoEliminar.ptrLiga.y + (obj_ptrNodoEliminar.ptrLiga.height / 2);
+
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
+
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoEliminar.texto_disenio.direccion_memoria_color);
+
+			}
+
+			if(obj_ptrNodoAnterior.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
+				let x_inicio = obj_ptrNodoAnterior.ptrLiga.x + (obj_ptrNodoAnterior.ptrLiga.width / 2);
+				let y_inicio = obj_ptrNodoAnterior.ptrLiga.y + (obj_ptrNodoAnterior.ptrLiga.height / 2);
+
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
+
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoAnterior.texto_disenio.direccion_memoria_color);
+
+			}
+
+			if(obj_ptrNodoFinal.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
+				let x_inicio = obj_ptrNodoFinal.ptrLiga.x + (obj_ptrNodoFinal.ptrLiga.width / 2);
+				let y_inicio = obj_ptrNodoFinal.ptrLiga.y + (obj_ptrNodoFinal.ptrLiga.height / 2);
+
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
+
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoFinal.texto_disenio.direccion_memoria_color);
+
+			}
+
+			if(obj_ptrNodoInicio.nodo_conectado.key == objeto.key){
+
+				//ptrLigaSig
 				let x_inicio = obj_ptrNodoInicio.ptrLiga.x + (obj_ptrNodoInicio.ptrLiga.width / 2);
 				let y_inicio = obj_ptrNodoInicio.ptrLiga.y + (obj_ptrNodoInicio.ptrLiga.height / 2);
 
-				let x_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_x + (objeto.contenedorDireccionMemoriaLigaEndPoint_width / 2);
-				let y_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_y + (objeto.contenedorDireccionMemoriaLigaEndPoint_height / 2);
+				//endpoint
+				let x_fin = objeto.nodo_estructura.contenedor_principal.x + 45;
+				let y_fin = objeto.nodo_estructura.contenedor_principal.y + 11;
 
-				dibujar_liga(true, x_inicio, y_inicio, x_fin, y_fin);
-
-			}else{
-
-				if(objeto.nodo_conectado.conectado){
-
-					let obj = objetos[objeto.nodo_conectado.nodo_key].key_objecto;
-
-					let x_inicio = obj.contenedorLiga_x + (obj.liga_width / 2);
-					let y_inicio = obj.contenedorLiga_y + (obj.liga_height / 2);
-
-					let x_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_x + (objeto.contenedorDireccionMemoriaLigaEndPoint_width / 2);
-					let y_fin = objeto.contenedorDireccionMemoriaLigaEndPoint_y + (objeto.contenedorDireccionMemoriaLigaEndPoint_height / 2);
-
-					dibujar_liga(false, x_inicio, y_inicio, x_fin, y_fin);
-
-				}
+				dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, obj_ptrNodoInicio.texto_disenio.direccion_memoria_color);
 
 			}
 
-			if(objeto.ptrNodoSig.conectado){
+			if(objeto.ptrLigaSig.key != null){
 
-				let x_inicio = objeto.contenedorLiga_x + (objeto.liga_width / 2);
-				let y_inicio = objeto.contenedorLiga_y + (objeto.liga_height / 2);
+				if(objeto.ptrLigaSig.key == obj_ptrNodoInicio.nodo_conectado.key){
 
-				let obj = objetos[objeto.ptrNodoSig.nodo_sig_key].key_objecto;
+					let objInicio = objetos[obj_ptrNodoInicio.nodo_conectado.key];
 
-				let x_fin = obj.contenedorDireccionMemoriaLigaEndPoint_x + (obj.contenedorDireccionMemoriaLigaEndPoint_width / 2);
-				let y_fin = obj.contenedorDireccionMemoriaLigaEndPoint_y + (obj.contenedorDireccionMemoriaLigaEndPoint_height / 2);
+					let endX = objInicio.nodo_estructura.titulo_dir_mem.x;
+					let startX = objeto.ptrLiga_estructura.contenedor.x + objeto.ptrLiga_estructura.contenedor.width;
+					let endY = objInicio.nodo_estructura.titulo_dir_mem.y;
+					let startY = objeto.ptrLiga_estructura.contenedor.y;
+					let middleX = (endX + startX)/2;
+					let middleY = (endY + startY)/2;
+					let offsetX = canvas.width/2
 
-				dibujar_liga(false, x_inicio, y_inicio, x_fin, y_fin);
+					ctx.lineWidth = 2;
+					ctx.beginPath();
+					ctx.strokeStyle = '#000000';
+					ctx.moveTo(startX, startY);
+					ctx.quadraticCurveTo(middleX + (offsetX/2), middleY - 20, endX, endY);
+					ctx.stroke();
+
+					const punta_tamanio = 5;
+					const angle = Math.atan2(endY - middleY, endX - middleX);
+
+					ctx.beginPath();
+					ctx.moveTo(endX, endY);
+					ctx.lineTo(endX - punta_tamanio * Math.cos(angle - Math.PI / 7), endY - punta_tamanio * Math.sin(angle - Math.PI / 7));
+					ctx.lineTo(endX - punta_tamanio * Math.cos(angle + Math.PI / 7), endY - punta_tamanio * Math.sin(angle + Math.PI / 7));
+					ctx.lineTo(endX, endY);
+					ctx.lineTo(endX - punta_tamanio * Math.cos(angle - Math.PI / 7), endY - punta_tamanio * Math.sin(angle - Math.PI / 7));
+					ctx.strokeStyle='#FF0000';
+					ctx.stroke();
+					ctx.fillStyle = "#FF0000";
+					ctx.fill();
+
+				}else{
+					//ptrLigaSig
+					let x_inicio = objeto.ptrLiga_estructura.contenedor.x + 90;
+					let y_inicio = objeto.ptrLiga_estructura.contenedor.y + (objeto.ptrLiga_estructura.contenedor.height / 2);
+					let obj = objetos[objeto.ptrLigaSig.key];
+					//endpoint
+					let x_fin = obj.nodo_estructura.contenedor_principal.x + 45;
+					let y_fin = obj.nodo_estructura.contenedor_principal.y + 11;
+					dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, "#000000");
+				}
 
 			}
 
 		}
 
-		//dibujar seleccion de ptrNodoInicio
-		if(mouseIsDownPtrNodoInicio){
+		//dibuja variables de c++
 
-			dibujar_seleccion_ptrNodoInicio();
+		if(obj_var_encontrado.declarada){
+
+			dibujar_variable(obj_var_encontrado);
+
+		}
+
+		if(obj_var_busqueda.declarada){
+
+			dibujar_variable(obj_var_busqueda);
+
+		}
+
+	}
+
+	function dibujar_nodo(nodo){ 
+
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
+		//ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
+		ctx.rect(nodo.nodo_estructura.contenedor_principal.x, nodo.nodo_estructura.contenedor_principal.y, 
+			nodo.nodo_estructura.contenedor_principal.width, nodo.nodo_estructura.contenedor_principal.height);
+		ctx.fill();
+		//ctx.stroke();
+
+		ctx.beginPath();
+		ctx.textAlign = "center";
+
+		let color = null;
+
+		if(obj_ptrNodoInicio.nodo_conectado.key == nodo.key && obj_ptrNodoFinal.nodo_conectado.key == nodo.key){
+			
+			color = "#00796b";
 
 		}else{
 
-			//dibujar seleccion de nodo
-			if(objetoActual != null){
+			if(obj_ptrNodoInicio.nodo_conectado.key == nodo.key){
+			
+			color = obj_ptrNodoInicio.texto_disenio.direccion_memoria_color;
 
-				dibujar_seleccion();
+			}else{
 
-				//dibujar seleccion ptrSigNodo
-				if(mouseIsDownLiga){
-					dibujar_seleccion_liga();
+				if(obj_ptrNodoFinal.nodo_conectado.key == nodo.key){
+			
+					color = obj_ptrNodoFinal.texto_disenio.direccion_memoria_color;
+
+				}else{
+
+					color = "#000000";
+
 				}
 
 			}
 
 		}
 
+		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
+		ctx.fillStyle = color;
+		ctx.fillText(nodo.direccion_memoria, 
+			nodo.nodo_estructura.titulo_dir_mem.x, nodo.nodo_estructura.titulo_dir_mem.y);
+
+		/*Dibujar contenedor dato*/
+
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
+		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
+		ctx.rect(nodo.dato_estructura.contenedor.x, nodo.dato_estructura.contenedor.y, 
+			nodo.dato_estructura.contenedor.width, nodo.dato_estructura.contenedor.height);
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.beginPath();
+		ctx.textAlign = "left";
+		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
+		ctx.fillStyle = obj_nodo.nodo_disenio.texto_variables_color;
+		ctx.fillText("dato", nodo.dato_estructura.titulo.x, nodo.dato_estructura.titulo.y);
+
+		ctx.beginPath();
+		ctx.textAlign = "left";
+		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
+		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
+
+		let dato_valor = null;
+
+		if(nodo.dato.valor !== null){
+
+			dato_valor = nodo.dato.valor;
+
+		}else{
+
+			dato_valor = "";
+
+		}
+
+		ctx.fillText(dato_valor, nodo.dato_estructura.valor.x, nodo.dato_estructura.valor.y);
+
+		/*Dibujar contenedor ptrLigaSig*/
+
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
+		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
+		ctx.rect(nodo.ptrLiga_estructura.contenedor.x,nodo.ptrLiga_estructura.contenedor.y, 
+			nodo.ptrLiga_estructura.contenedor.width, nodo.ptrLiga_estructura.contenedor.height);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.textAlign = "left";
+		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
+		ctx.fillStyle = obj_nodo.nodo_disenio.texto_variables_color;
+		ctx.fillText("ptrNodoSig", nodo.ptrLiga_estructura.titulo.x, nodo.ptrLiga_estructura.titulo.y);
+
+		ctx.beginPath();
+		ctx.textAlign = "left";
+		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
+		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
+
+		let ptrNodoSig = null;
+
+		if(nodo.ptrLigaSig.inicializado){
+
+			if(nodo.ptrLigaSig.key !== null){
+
+				ptrNodoSig = objetos[nodo.ptrLigaSig.key].direccion_memoria;
+
+			}else{
+
+				ptrNodoSig = "NULL";
+
+			}			
+
+			
+
+		}else{
+
+			ptrNodoSig = "";
+
+		}
+
+		ctx.fillText(ptrNodoSig, nodo.ptrLiga_estructura.valor.x, nodo.ptrLiga_estructura.valor.y);
+
 	}
 
-	function dibujar_nodo(objeto){
-
-		//contenedor principal
-		ctx.beginPath();
-		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
-		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
-		ctx.rect(objeto.contenedorPrincipal_x, objeto.contenedorPrincipal_y, 
-			objeto.contenedorPrincipal_width, objeto.contenedorPrincipal_height);
-		ctx.fill();
-		ctx.stroke();
+	function dibujar_seleccion_nodo(){
 
 		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_variables_color;
-		ctx.fillText("Struct nodo", 
-			objeto.contenedorPrincipal_titulo_x, objeto.contenedorPrincipal_titulo_y);
-
-		//contenedor direccion memoria
-		ctx.beginPath();
-		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
-		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
-		ctx.rect(objeto.contenedorDireccionMemoria_x, objeto.contenedorDireccionMemoria_y, 
-			objeto.contenedorDireccionMemoria_width, objeto.contenedorDireccionMemoria_height);
-		ctx.stroke();
-		ctx.fill();
-
-		//contenedor direccion memoria liga end point
-		ctx.beginPath();
-		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
-		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
-		ctx.rect(objeto.contenedorDireccionMemoriaLigaEndPoint_x, objeto.contenedorDireccionMemoriaLigaEndPoint_y, 
-			objeto.contenedorDireccionMemoriaLigaEndPoint_width, objeto.contenedorDireccionMemoriaLigaEndPoint_height);
-		ctx.stroke();
-		ctx.fill();
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
-		ctx.fillText("Dirección de memoria:", objeto.contenedorPrincipal_texto_x, objeto.contenedorPrincipal_texto_y);
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
-		ctx.fillText(objeto.direccion_memoria, objeto.contenedorPrincipal_dirmem_x, objeto.contenedorPrincipal_dirmem_y);
-
-		// ##################################################################################################################
-
-		//dato
-		ctx.beginPath();
-		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
-		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
-		ctx.rect(objeto.contenedorDato_x, objeto.contenedorDato_y, objeto.dato_width, objeto.dato_height);
-		ctx.stroke();
-		ctx.fill();
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_variables_color;
-		ctx.fillText("dato", objeto.dato_texto_x, objeto.dato_texto_y);
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
-		ctx.fillText(objeto.valor_dato, objeto.dato_valor_x, objeto.dato_valor_y);
-
-		//ptrLiga
-		ctx.beginPath();
-		ctx.fillStyle = obj_nodo.nodo_disenio.relleno_color;
-		ctx.strokeStyle = obj_nodo.nodo_disenio.margen_color;
-		ctx.rect(objeto.contenedorLiga_x, objeto.contenedorLiga_y, objeto.liga_width, objeto.liga_height);
-		ctx.stroke();
-		ctx.fill();
-		ctx.closePath();
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_variables_color;
-		ctx.fillText("*ptrSigNodo", objeto.ptrLiga_texto_x, objeto.ptrLiga_texto_y);
-
-		ctx.beginPath();
-		ctx.font = obj_nodo.nodo_disenio.texto_font_valores;
-		ctx.fillStyle = obj_nodo.nodo_disenio.texto_color;
-		ctx.fillText(objeto.valor_ptrLiga, objeto.ptrLiga_valor_x, objeto.ptrLiga_valor_y);
-
-	}
-
-	function dibujar_seleccion(){
-
-		//contenedor principal
-		ctx.beginPath();
-		ctx.lineWidth = 4;
+		ctx.lineWidth = 3;
 		ctx.strokeStyle = '#03a9f4';
-		ctx.rect(objetoActual.contenedorPrincipal_x - 3, objetoActual.contenedorPrincipal_y - 3, objetoActual.contenedorPrincipal_width + 6, objetoActual.contenedorPrincipal_height + 6);
+		ctx.rect(objetoActual.nodo_estructura.contenedor_principal.x - 2, objetoActual.nodo_estructura.contenedor_principal.y - 2, 
+			objetoActual.nodo_estructura.contenedor_principal.width + 4, objetoActual.nodo_estructura.contenedor_principal.height + 4);
 		ctx.stroke();
 
 	}
 
 	function dibujar_seleccion_liga(){
 
-		//contenedor principal
+		//objetoActual.ptrLiga_estructura.contenedor.
+
 		ctx.beginPath();
-		ctx.lineWidth = 4;
+		ctx.lineWidth = 3;
 		ctx.strokeStyle = '#ec407a';
-		ctx.rect(objetoActual.contenedorLiga_x - 3, objetoActual.contenedorLiga_y - 3, objetoActual.liga_width + 6, objetoActual.liga_height + 6);
+		ctx.rect(objetoActual.ptrLiga_estructura.contenedor.x - 2, objetoActual.ptrLiga_estructura.contenedor.y - 2, 
+			objetoActual.ptrLiga_estructura.contenedor.width + 4, objetoActual.ptrLiga_estructura.contenedor.height + 4);
 		ctx.stroke();
 
 	}
 
-	function dibujar_liga(nodoInicio, x_inicio, y_inicio, x_fin, y_fin){
-
-		if(!nodoInicio){
-			x_inicio = x_inicio + 35;
-		}
+	function dibujar_liga(x_inicio, y_inicio, x_fin, y_fin, color){
 
 		var punta_tamanio = 5;
-		var angle = Math.atan2(y_fin-y_inicio,x_fin-x_inicio);
+		var angle = Math.atan2(y_fin - y_inicio, x_fin - x_inicio);
 
 		ctx.beginPath();
 		ctx.lineWidth = 2;
-		ctx.strokeStyle = '#6200ea';
+		ctx.strokeStyle = color;
 		ctx.moveTo(x_inicio, y_inicio);
 		ctx.lineTo(x_fin, y_fin);
 		ctx.stroke();
@@ -823,101 +1445,130 @@
 		ctx.lineTo(x_fin, y_fin);
 		ctx.lineTo(x_fin - punta_tamanio * Math.cos(angle - Math.PI / 7), y_fin - punta_tamanio * Math.sin(angle - Math.PI / 7));
 
-		ctx.strokeStyle = "#6200ea";
+		ctx.strokeStyle = color;
 		ctx.lineWidth = 2;
 		ctx.stroke();
-		ctx.fillStyle = "#6200ea";
+		ctx.fillStyle = color;
 		ctx.fill();
 
 	}
 
 	/* OBJETOS FIJOS */
 
-	function dibujar_ptrNodoInicio(){
+	/*
+		Funcion dibujar ptrNodo
+	*/
+	function dibujar_puntero(obj_puntero){
 
-		let inicio_x = obj_ptrNodoInicio.contenedor_principal.x;
-		let inicio_y = obj_ptrNodoInicio.contenedor_principal.y;
+		let inicio_x = obj_puntero.contenedor_principal.x;
+		let inicio_y = obj_puntero.contenedor_principal.y;
 
 		let texto_x = inicio_x + 10;
+		let texto_y = inicio_y;
 
-		//ptrNodoInicio
+		//dibujar contenedor
 		ctx.beginPath();
-		ctx.lineWidth = obj_ptrNodoInicio.disenio.margen_lineWidth;
-		ctx.strokeStyle = obj_ptrNodoInicio.disenio.margen_color;
-		ctx.fillStyle = obj_ptrNodoInicio.disenio.relleno_color;
-		ctx.rect(obj_ptrNodoInicio.contenedor_principal.x, obj_ptrNodoInicio.contenedor_principal.y, 
-			obj_ptrNodoInicio.contenedor_principal.width, obj_ptrNodoInicio.contenedor_principal.height);
+		ctx.lineWidth = obj_puntero.disenio.margen_lineWidth;
+		ctx.strokeStyle = obj_puntero.disenio.margen_color;
+		ctx.fillStyle = obj_puntero.disenio.relleno_color;
+		ctx.rect(obj_puntero.contenedor_principal.x, obj_puntero.contenedor_principal.y, 
+			obj_puntero.contenedor_principal.width, obj_puntero.contenedor_principal.height);
 		ctx.stroke();
 		ctx.fill();
 
+		//dibujar nombre apuntador
 		ctx.beginPath();
-		ctx.fillStyle = obj_ptrNodoInicio.texto_disenio.color;
-		ctx.font = obj_ptrNodoInicio.texto_disenio.font;
-		ctx.fillText("variable tipo apuntador", texto_x, 34);
+		ctx.fillStyle = obj_puntero.texto_disenio.color;
+		ctx.font = obj_puntero.texto_disenio.font;
+		ctx.fillText(obj_puntero.nombre, texto_x, texto_y + 22);
 
+		//dibujar direccion de memoria
 		ctx.beginPath();
-		ctx.fillStyle = obj_ptrNodoInicio.texto_disenio.color;
-		ctx.font = obj_ptrNodoInicio.texto_disenio.font;
-		ctx.fillText("nodo *ptrNodoInicio", texto_x, 48);
+		ctx.fillStyle = obj_puntero.texto_disenio.direccion_memoria_color;
+		ctx.font = obj_puntero.texto_disenio.font_valor;
 
-		ctx.beginPath();
-		ctx.fillStyle = obj_ptrNodoInicio.texto_disenio.color;
-		ctx.font = obj_ptrNodoInicio.texto_disenio.font_valor;
-		ctx.fillText(obj_ptrNodoInicio.nodo_conectado.direccion_memoria, texto_x, 62);
+		let direccion_memoria = null;
 
-		//ptrNodoInicio liga
+		if(obj_puntero.nodo_conectado.key === null){
+
+			direccion_memoria = "NULL";
+
+		}else{
+
+			direccion_memoria = objetos[obj_puntero.nodo_conectado.key].direccion_memoria;
+
+		}
+
+		ctx.fillText(direccion_memoria, texto_x, texto_y + 38);
+
+		//dibujar cuadro de liga
 		ctx.beginPath();
-		ctx.lineWidth = obj_ptrNodoInicio.disenio.margen_lineWidth;
-		ctx.strokeStyle = obj_ptrNodoInicio.disenio.margen_color;
-		ctx.fillStyle = obj_ptrNodoInicio.disenio.relleno_color;
-		ctx.rect(obj_ptrNodoInicio.ptrLiga.x, obj_ptrNodoInicio.ptrLiga.y, 
-			obj_ptrNodoInicio.ptrLiga.width, obj_ptrNodoInicio.ptrLiga.height);
+		ctx.lineWidth = obj_puntero.disenio.margen_lineWidth;
+		ctx.strokeStyle = obj_puntero.disenio.margen_color;
+		ctx.fillStyle = obj_puntero.disenio.relleno_color;
+		ctx.rect(obj_puntero.ptrLiga.x, obj_puntero.ptrLiga.y, 
+			obj_puntero.ptrLiga.width, obj_puntero.ptrLiga.height);
 		ctx.stroke();
 		ctx.fill();
 
 	}
 
-	function dibujar_seleccion_ptrNodoInicio(){
+	function detectar_ptrNodo(obj_puntero, pos_actualX, pos_actualY){
 
-		ctx.beginPath();
-		ctx.lineWidth = 4;
-		ctx.strokeStyle = '#ec407a';
-		ctx.rect(obj_ptrNodoInicio.ptrLiga.x - 3, obj_ptrNodoInicio.ptrLiga.y - 3, obj_ptrNodoInicio.ptrLiga.width + 6, obj_ptrNodoInicio.ptrLiga.height + 6);
-		ctx.stroke();
+		if(obj_puntero.contenedor_principal.x < pos_actualX
+			&& (obj_puntero.contenedor_principal.width + obj_puntero.contenedor_principal.x  > pos_actualX)
+			&& obj_puntero.contenedor_principal.y < pos_actualY
+			&& (obj_puntero.contenedor_principal.height + obj_puntero.contenedor_principal.y > pos_actualY)){
+				return true;	
+		}else{
+			return false;
+		}
+
+	}
+
+	function mover_puntero(obj_puntero, mov_x, mov_y){
+
+		obj_puntero.contenedor_principal.x = obj_puntero.contenedor_principal.x + mov_x;
+		obj_puntero.contenedor_principal.y = obj_puntero.contenedor_principal.y + mov_y;
+
+		obj_puntero.ptrLiga.x = obj_puntero.ptrLiga.x + mov_x;
+		obj_puntero.ptrLiga.y = obj_puntero.ptrLiga.y + mov_y;
 
 	}
 
 	/*
-	Funcion para obtener posicion(x,y) donde se dio click en el canvas
+		Funciones dibujar variables
 	*/
-	function getDomRect(event){
+	function dibujar_variable(obj){
 
-		let domRect = canvas.getBoundingClientRect();
+		let inicio_x = obj.contenedor_principal.x;
+		let inicio_y = obj.contenedor_principal.y;
 
-		let obj_domRect = {
-			'pos_actualX': event.clientX - domRect.left,
-	      	'pos_actualY': event.clientY - domRect.top,
-		};
+		let texto_x = inicio_x + 10;
+		let texto_y = inicio_y;
 
-		return obj_domRect;
+		//ptrNodoInicio
+		ctx.beginPath();
+		ctx.lineWidth = obj.disenio.margen_lineWidth;
+		ctx.strokeStyle = obj.disenio.margen_color;
+		ctx.fillStyle = obj.disenio.relleno_color;
+		ctx.rect(obj.contenedor_principal.x, obj.contenedor_principal.y, 
+			obj.contenedor_principal.width, obj.contenedor_principal.height);
+		ctx.stroke();
+		ctx.fill();
 
-	}
+		ctx.beginPath();
+		ctx.fillStyle = obj.texto_disenio.color;
+		ctx.font = obj.texto_disenio.font;
+		ctx.fillText(obj.nombre, texto_x, texto_y + 22);
 
-	function generarDireccionMemoria(){
-
-		var hex = "0123456789abcdef"; 
-	
-		var dirMem = "0x"; 
-	
-		// of 6 letter or digits 
-		for (var i = 0; i < 6; i++){
-			dirMem += hex[(Math.floor(Math.random() * 16))]; 
-		}
-
-		return dirMem.trim();
-
-	}
+		ctx.beginPath();
+		ctx.fillStyle = obj.texto_disenio.valor_color;
+		ctx.font = obj.texto_disenio.font_valor;
+		ctx.fillText(obj.valor, texto_x, texto_y + 38);
 		
+	}
+
 </script>
 
 @endsection

@@ -50,6 +50,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ action('ListasSimplementeLigadasController@index') }}">Listas Simplemente Ligadas</a>
                                 <a class="dropdown-item" href="{{ action('ListasDoblementeLigadasController@index') }}">Listas Doblemente Ligadas</a>
+                                <a class="dropdown-item" href="{{ action('ListasSimplementeLigadasCircularesController@index') }}">Listas Simplemente Ligadas Circulares</a>
                             </div>
                         </li>
                     </ul>
