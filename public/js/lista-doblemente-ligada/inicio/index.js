@@ -216,7 +216,7 @@ function crear_tabla_declaracion_variables_globales(){
     	
     	let objExplicacion = {
     		"titulo": "Declaración de variable tipo puntero global",
-    		"explicacion": "Se declara una variable tipo puntero que guardara la dirección de memoria del nodo que esta al inicio de la lista simplemente ligada.",
+    		"explicacion": "Se declara una variable tipo puntero que guardara la dirección de memoria del nodo que esta al inicio de la lista doblemente ligada.",
     		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración de variable tipo puntero",
     		"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 		};
@@ -245,7 +245,7 @@ function crear_tabla_declaracion_variables_globales(){
     	
     	let objExplicacion = {
     		"titulo": "Declaración de variable tipo puntero global",
-    		"explicacion": "Se declara una variable tipo puntero que guardara la dirección de memoria del nodo que esta al final de la lista simplemente ligada.",
+    		"explicacion": "Se declara una variable tipo puntero que guardara la dirección de memoria del nodo que esta al final de la lista doblemente ligada.",
     		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración de variable tipo puntero",
     		"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 		};
@@ -470,7 +470,7 @@ function crear_tabla_insertar_nodo_inicial(){
 
 		let objExplicacion = {
     		"titulo": "Función void insertar_nodo_inicial()",
-    		"explicacion": "Función que agrega el primer nodo a una lista simplemente ligada cuando esta se encuentra vacía.",
+    		"explicacion": "Función que agrega el primer nodo a una lista doblemente ligada cuando esta se encuentra vacía.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
 		};
@@ -1939,7 +1939,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 			
 			let objExplicacion = {
     			"titulo": "",
-    			"explicacion": "Se crea una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista simplemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado.",
+    			"explicacion": "Se crea una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista doblemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado.",
     			"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 			};
@@ -1965,7 +1965,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 		
 			let objExplicacion = {
     			"titulo": "",
-    			"explicacion": "Variable tipo bool que indicara si el nodo dado como referencia se encuentra en la lista simplemente ligada.",
+    			"explicacion": "Variable tipo bool que indicara si el nodo dado como referencia se encuentra en la lista doblemente ligada.",
     			"imagen_titulo": "",
 				"imagen_ruta": "",
 			};
@@ -1991,7 +1991,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 		
 			let objExplicacion = {
     			"titulo": "",
-    			"explicacion": "Variable tipo int que guardará el valor a buscar en la lista simplemente ligada, para indicar cual es el nodo dado como referencia.",
+    			"explicacion": "Variable tipo int que guardará el valor a buscar en la lista doblemente ligada, para indicar cual es el nodo dado como referencia.",
     			"imagen_titulo": "",
 				"imagen_ruta": "",
 			};
@@ -2036,7 +2036,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 		
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "Se lee el valor a buscar en la lista simplemente ligada.",
+	    		"explicacion": "Se lee el valor a buscar en la lista doblemente ligada.",
 	    		"imagen_titulo": "",
 				"imagen_ruta": "",
 			};
@@ -2086,7 +2086,7 @@ function crear_tabla_insertar_nodo_antes_de(){
 			
 				let objExplicacion = {
 					"titulo": "",
-					"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
+					"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista doblemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista doblemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
 					"imagen_titulo": "",
 					"imagen_ruta": "",
 				};
@@ -3026,7 +3026,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 		let objExplicacion = {
     		"titulo": "Función void insertar_despues_de()",
-    		"explicacion": "Función que agrega un nuevo nodo después de un nodo dado como referencia que se encuentra en la lista simplemente ligada.",
+    		"explicacion": "Función que agrega un nuevo nodo después de un nodo dado como referencia que se encuentra en la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -3054,7 +3054,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 			let objExplicacion = {
 	    		"titulo": "Función void insertar_despues_de()",
-	    		"explicacion": "Se crea una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista simplemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado.",
+	    		"explicacion": "Se crea una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista doblemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado.",
 	    		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 	    	};
@@ -3080,7 +3080,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 			let objExplicacion = {
 	    		"titulo": "Función void insertar_despues_de()",
-	    		"explicacion": "Variable tipo bool que indicara si el nodo dado como referencia se encuentra en la lista simplemente ligada.",
+	    		"explicacion": "Variable tipo bool que indicara si el nodo dado como referencia se encuentra en la lista doblemente ligada.",
 	    		"imagen_titulo": "",
 				"imagen_ruta": "",
 	    	};
@@ -3106,7 +3106,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 			let objExplicacion = {
 	    		"titulo": "Función void insertar_despues_de()",
-	    		"explicacion": "Variable tipo int que guardará el valor a buscar en la lista simplemente ligada, para indicar cual es el nodo dado como referencia.",
+	    		"explicacion": "Variable tipo int que guardará el valor a buscar en la lista doblemente ligada, para indicar cual es el nodo dado como referencia.",
 	    		"imagen_titulo": "",
 				"imagen_ruta": "",
 	    	};
@@ -3151,7 +3151,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 			let objExplicacion = {
 	    		"titulo": "Función void insertar_despues_de()",
-	    		"explicacion": "Se lee el valor a buscar en la lista simplemente ligada.",
+	    		"explicacion": "Se lee el valor a buscar en la lista doblemente ligada.",
 	    		"imagen_titulo": "",
 				"imagen_ruta": "",
 	    	};
@@ -3201,7 +3201,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 				let objExplicacion = {
 		    		"titulo": "Función void insertar_despues_de()",
-		    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
+		    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista doblemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista doblemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
 		    		"imagen_titulo": "",
 					"imagen_ruta": "",
 		    	};
@@ -3226,7 +3226,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 					let objExplicacion = {
 			    		"titulo": "Función void insertar_despues_de()",
-			    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
+			    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista doblemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista doblemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
 			    		"imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -3883,7 +3883,7 @@ function crear_tabla_eliminar_nodo_inicio(){
 
 		let objExplicacion = {
     		"titulo": "Función void eliminar_nodo_inicio()",
-    		"explicacion": "Función que eliminar el nodo que esta al inicio de la lista simplemente ligada.",
+    		"explicacion": "Función que eliminar el nodo que esta al inicio de la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -4026,7 +4026,7 @@ function crear_tabla_eliminar_nodo_inicio(){
 
 					let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Ya que la lista tiene mas de un nodo, el ptrNodoInicio debe de apuntar al que es actualmente el segundo nodo se la lista para que pase a ser el primer nodo de la lista simplemente ligada.",
+			    		"explicacion": "Ya que la lista tiene mas de un nodo, el ptrNodoInicio debe de apuntar al que es actualmente el segundo nodo se la lista para que pase a ser el primer nodo de la lista doblemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -4462,7 +4462,7 @@ function crear_tabla_eliminar_nodo_final(){
 
 		let objExplicacion = {
     		"titulo": "Función void eliminar_nodo_final()",
-    		"explicacion": "Función que eliminar el nodo que esta al final de la lista simplemente ligada.",
+    		"explicacion": "Función que eliminar el nodo que esta al final de la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
 		};
@@ -4604,7 +4604,7 @@ function crear_tabla_eliminar_nodo_final(){
 
 					let objExplicacion = {
 						"titulo": "",
-						"explicacion": "Se declara una nueva variable tipo puntero a la que se le ira asignando la dirección de memoria de todos los nodos para ir recorriendo la lista hasta llegar al penúltimo nodo. Ya que se eliminará el último nodo de la lista simplemente ligada y el penúltimo nodo pasará a ser el último de la lista simplemente ligada.",
+						"explicacion": "Se declara una nueva variable tipo puntero a la que se le ira asignando la dirección de memoria de todos los nodos para ir recorriendo la lista hasta llegar al penúltimo nodo. Ya que se eliminará el último nodo de la lista doblemente ligada y el penúltimo nodo pasará a ser el último de la lista doblemente ligada.",
 						"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 					};
@@ -4630,7 +4630,7 @@ function crear_tabla_eliminar_nodo_final(){
 
 					let objExplicacion = {
 						"titulo": "",
-						"explicacion": "Ciclo While con el que se recorrerá la lista simplemente ligada hasta llegar al penúltimo nodo de la lista simplemente ligada.",
+						"explicacion": "Ciclo While con el que se recorrerá la lista doblemente ligada hasta llegar al penúltimo nodo de la lista doblemente ligada.",
 						"imagen_titulo": "",
 						"imagen_ruta": "",
 					};
@@ -5515,7 +5515,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 		let objExplicacion = {
     		"titulo": "Función void eliminar_informacionX()",
-    		"explicacion": "Función que eliminar el primer nodo que encuentra en la lista simplemente ligada cuyo valor en alguno de los miembros del nodo sea igual al valor buscado.",
+    		"explicacion": "Función que eliminar el primer nodo que encuentra en la lista doblemente ligada cuyo valor en alguno de los miembros del nodo sea igual al valor buscado.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -5574,7 +5574,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 				let objExplicacion = {
 		    		"titulo": "",
-		    		"explicacion": "Se declara una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista simplemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado para ser eliminado de la lista simplemente ligada.",
+		    		"explicacion": "Se declara una nueva variable de tipo puntero, la cual servirá para ir apuntando a la dirección de cada nodo de la lista y así recorrer la lista doblemente ligada, aparte de indicar la dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato sea igual al valor buscado para ser eliminado de la lista doblemente ligada.",
 		    		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 		    	};
@@ -5629,7 +5629,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 				let objExplicacion = {
 		    		"titulo": "",
-		    		"explicacion": "Variable tipo bool que indicara si el nodo cuyo valor dato sea igual al buscado se encuentra en la lista simplemente ligada.",
+		    		"explicacion": "Variable tipo bool que indicara si el nodo cuyo valor dato sea igual al buscado se encuentra en la lista doblemente ligada.",
 		    		"imagen_titulo": "",
 					"imagen_ruta": "",
 		    	};
@@ -5655,7 +5655,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 				let objExplicacion = {
 		    		"titulo": "",
-		    		"explicacion": "Variable tipo int que guardará el valor del dato a buscar en la lista simplemente ligada, para encontrar el nodo a eliminar.",
+		    		"explicacion": "Variable tipo int que guardará el valor del dato a buscar en la lista doblemente ligada, para encontrar el nodo a eliminar.",
 		    		"imagen_titulo": "",
 					"imagen_ruta": "",
 		    	};
@@ -5903,7 +5903,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 					let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se verifica si el nodo a eliminar es el único nodo en la lista. Ya que, al eliminar el nodo, los apuntadores ptrNodoInicio y ptrNodoFinal deben apuntar a NULL al no haber nodos en la lista simplemente ligada.",
+			    		"explicacion": "Se verifica si el nodo a eliminar es el único nodo en la lista. Ya que, al eliminar el nodo, los apuntadores ptrNodoInicio y ptrNodoFinal deben apuntar a NULL al no haber nodos en la lista doblemente ligada.",
 			    		"imagen_titulo": "",
 						"imagen_ruta": "",
 			    	};
@@ -5957,7 +5957,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 						let objExplicacion = {
 				    		"titulo": "",
-				    		"explicacion": "Se verifica que el nodo a eliminar sea el primer nodo de la lista simplemente ligada.",
+				    		"explicacion": "Se verifica que el nodo a eliminar sea el primer nodo de la lista doblemente ligada.",
 				    		"imagen_titulo": "",
 							"imagen_ruta": "",
 				    	};
@@ -5984,7 +5984,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 							let objExplicacion = {
 					    		"titulo": "",
-					    		"explicacion": "El segundo nodo de la lista simplemente ligada pasara a ser el primer nodo, ya que se está eliminando el que es actualmente el primer nodo de la lista simplemente ligada.",
+					    		"explicacion": "El segundo nodo de la lista doblemente ligada pasara a ser el primer nodo, ya que se está eliminando el que es actualmente el primer nodo de la lista simplemente ligada.",
 					    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 								"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 					    	};
@@ -6013,7 +6013,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 							let objExplicacion = {
 					    		"titulo": "",
-					    		"explicacion": "Se verifica que el nodo a eliminar sea el último de la lista simplemente ligada.",
+					    		"explicacion": "Se verifica que el nodo a eliminar sea el último de la lista doblemente ligada.",
 					    		"imagen_titulo": "",
 								"imagen_ruta": "",
 					    	};
@@ -6040,7 +6040,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 								let objExplicacion = {
 						    		"titulo": "",
-						    		"explicacion": "El penúltimo nodo pasa a ser el ultimo nodo de la lista simplemente ligada.",
+						    		"explicacion": "El penúltimo nodo pasa a ser el ultimo nodo de la lista doblemente ligada.",
 						    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 									"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 						    	};
@@ -6456,7 +6456,7 @@ function crear_tabla_imprimir_lista(){
 
 		let objExplicacion = {
     		"titulo": "Función void imprimir_lista()",
-    		"explicacion": "Función que imprime el valor de los miembros de todos los nodos de la lista simplemente ligada.",
+    		"explicacion": "Función que imprime el valor de los miembros de todos los nodos de la lista doblemente ligada.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -6508,7 +6508,7 @@ function crear_tabla_imprimir_lista(){
 
             	let objExplicacion = {
 		    		"titulo": "",
-		    		"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista simplemente ligada.",
+		    		"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista doblemente ligada.",
 		    		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 		    	};
@@ -6597,7 +6597,7 @@ function crear_tabla_imprimir_lista(){
                 document.getElementById("btn_imprimir_lista_explicacion_7_" + cont_imprimir).onclick = function() {
                 	let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista doblemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -6613,7 +6613,7 @@ function crear_tabla_imprimir_lista(){
                 document.getElementById("btn_imprimir_lista_explicacion_11_" + cont_imprimir).onclick = function() {
                 	let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del anterior nodo de la lista simplemente ligada.",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del anterior nodo de la lista doblemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -6630,7 +6630,7 @@ function crear_tabla_imprimir_lista(){
                 document.getElementById("btn_imprimir_lista_explicacion_8_" + cont_imprimir).onclick = function() {
                 	let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista simplemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
+			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista doblemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -7089,7 +7089,7 @@ function crear_tabla_buscar_en_la_lista(){
 
 		let objExplicacion = {
     		"titulo": "Función void buscar()",
-    		"explicacion": "Función que busca e imprime el primer nodo de la lista simplemente ligada cuyo valor en alguno de sus miembros sea igual al valor buscado.",
+    		"explicacion": "Función que busca e imprime el primer nodo de la lista doblemente ligada cuyo valor en alguno de sus miembros sea igual al valor buscado.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -7140,7 +7140,7 @@ function crear_tabla_buscar_en_la_lista(){
 
 				let objExplicacion = {
 					"titulo": "",
-					"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista simplemente ligada.",
+					"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista doblemente ligada.",
 					"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 				};
@@ -7249,7 +7249,7 @@ function crear_tabla_buscar_en_la_lista(){
 
 					let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista simplemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
+			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista doblemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -7378,7 +7378,7 @@ function crear_tabla_buscar_en_la_lista(){
 				document.getElementById("btn_buscar_en_lista_explicacion_14_" + cont_buscar).onclick = function() {
 					let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista doblemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -7395,7 +7395,7 @@ function crear_tabla_buscar_en_la_lista(){
 				document.getElementById("btn_buscar_en_lista_explicacion_17_" + cont_buscar).onclick = function() {
 					let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del nodo que le precede al nodo actual de la lista simplemente ligada.",
+			    		"explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del nodo que le precede al nodo actual de la lista doblemente ligada.",
 			    		"imagen_titulo": "Plan de programación 7 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
@@ -7804,7 +7804,7 @@ function crear_tabla_modificar_nodo(){
 
     	let objExplicacion = {
     		"titulo": "Función void modificar()",
-    		"explicacion": "Función que busca el primer nodo en la lista simplemente ligada cuyo valor en alguno de sus miembros sea igual al valor buscado para ser modificado.",
+    		"explicacion": "Función que busca el primer nodo en la lista doblemente ligada cuyo valor en alguno de sus miembros sea igual al valor buscado para ser modificado.",
     		"imagen_titulo": "",
     		"imagen_ruta": "",
     	};
@@ -7855,7 +7855,7 @@ function crear_tabla_modificar_nodo(){
 
             	let objExplicacion = {
 		    		"titulo": "",
-		    		"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista simplemente ligada.",
+		    		"explicacion": "Declaración de una nueva variable tipo puntero con la que se ira recorriendo la lista y cuyo valor inicial es igual a la dirección de memoria del nodo que esta al inicio de la lista doblemente ligada.",
 		    		"imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
 					"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
 		    	};
@@ -7964,7 +7964,7 @@ function crear_tabla_modificar_nodo(){
 
                 	let objExplicacion = {
 			    		"titulo": "",
-			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista simplemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
+			    		"explicacion": "Se le asigna al puntero ptrNodoActual la dirección de memoria del siguiente nodo de la lista doblemente ligada por medio del miembro ptrNodoSiguiente del nodo al que apunta actualmente ptrNodoActual.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
