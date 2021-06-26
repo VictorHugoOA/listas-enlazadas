@@ -1503,8 +1503,8 @@ function crear_tabla_insertar_nodo_antes_de(){
 				'<td></td>' +
 				'<td>' +
 					'<span style="padding-left: 2em;">' +
-						//9 //if(ptrNodoActual->ptrNodoSiguiente != NULL){
-						'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+						//9 //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+						'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
 					'</span>' +
 				'</td>' +
 				'<td>' +
@@ -1727,6 +1727,22 @@ function crear_tabla_insertar_nodo_antes_de(){
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_antes_de_explicacion_23_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
+				'</td>' +
+			'</tr>' +
+
+			'<tr>' +
+				'<td></td>' +
+				'<td>' +
+					'<span style="padding-left: 3em;">' +
+						//31 //ptrNodoFinal -> ptrNodoSiguiente = ptrNodoInicio
+						'ptrNodoFinal <span class="simbolo">-&#62;</span> ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+					'</span>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_insertar_nodo_antes_de_ejecutar_31_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_insertar_nodo_antes_de_explicacion_31_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
 				'</td>' +
 			'</tr>' +
 
@@ -2058,12 +2074,12 @@ function crear_tabla_insertar_nodo_antes_de(){
 		
 		}	
 			
-			//9 //if(ptrNodoActual->ptrNodoSiguiente != NULL){
+			//9 //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
 			document.getElementById("btn_insertar_nodo_antes_de_ejecutar_9_" + direccion_memoria_nodo).onclick = function() {
 
 				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_9_" + direccion_memoria_nodo).style.display = "none";
 
-				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != null){
+				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoInicio.nodo_conectado.key){
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_10_" + direccion_memoria_nodo).style.display = "block";
 				}else{
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_13_" + direccion_memoria_nodo).style.display = "block";
@@ -2331,8 +2347,30 @@ function crear_tabla_insertar_nodo_antes_de(){
 				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_23_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_23_" + direccion_memoria_nodo).style.display = "none";
+					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_31_" + direccion_memoria_nodo).style.display = "block";
 
 					obj_ptrNodoInicio.nodo_conectado.key = objetos[obj_ptrNodoNuevo.nodo_conectado.key].key
+                    actualizar();
+
+				}
+
+				document.getElementById("btn_insertar_nodo_antes_de_explicacion_23_" + direccion_memoria_nodo).onclick = function() {
+					let objExplicacion = {
+						"titulo": "",
+						"explicacion": "El puntero ptrNodoInicio debe de apuntar a la dirección de memoria del nuevo nodo, para que dicho nodo sea el nuevo nodo que esta al inicio de la lista.",
+						"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
+						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
+					};
+					crear_explicacion(objExplicacion, "block");
+				}
+
+    			//31 ptrNodoFinal -> ptrNodoSiguiente = ptrNodoInicio
+				document.getElementById("btn_insertar_nodo_antes_de_ejecutar_31_" + direccion_memoria_nodo).onclick = function() {
+
+
+					document.getElementById("btn_insertar_nodo_antes_de_ejecutar_31_" + direccion_memoria_nodo).style.display = "none";
+
+                    objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
 
 					//fin de la función
 
@@ -2350,25 +2388,22 @@ function crear_tabla_insertar_nodo_antes_de(){
 
 					obj_var_busqueda.declarada = false;
 					obj_var_busqueda.valor = 0;
-
 					actualizar();
 
 					desbloquear_funciones();
 
 					mostrar_alerta_funcion_terminada();
-			
-				}
-				document.getElementById("btn_insertar_nodo_antes_de_explicacion_23_" + direccion_memoria_nodo).onclick = function() {
-				
+
+                }
+
+				document.getElementById("btn_insertar_nodo_antes_de_explicacion_31_" + direccion_memoria_nodo).onclick = function() {
 					let objExplicacion = {
 						"titulo": "",
 						"explicacion": "El puntero ptrNodoInicio debe de apuntar a la dirección de memoria del nuevo nodo, para que dicho nodo sea el nuevo nodo que esta al inicio de la lista.",
 						"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 					};
-					
 					crear_explicacion(objExplicacion, "block");
-				
 				}
 				
 			//}else{
@@ -2627,8 +2662,8 @@ function crear_tabla_insertar_nodo_despues_de(){
 				'<td></td>' +
 				'<td>' +
 					'<span style="padding-left: 2em;">' +
-						//8 //if(ptrNodoActual->ptrNodoSiguiente != NULL){
-						'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+						//8 //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+						'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
 					'</span>' +
 				'</td>' +
 				'<td>' +
@@ -2835,6 +2870,22 @@ function crear_tabla_insertar_nodo_despues_de(){
 				'</td>' +
 				'<td>' +
 					'<button id="btn_insertar_nodo_despues_de_explicacion_18_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
+				'</td>' +
+			'</tr>' +
+
+			'<tr>' +
+				'<td></td>' +
+				'<td>' +
+					'<span style="padding-left: 3em;">' +
+						//23 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio;
+						'ptrNodoFinal <span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
+					'</span>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_insertar_nodo_despues_de_ejecutar_23_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_insertar_nodo_despues_de_explicacion_23_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
 				'</td>' +
 			'</tr>' +
 			
@@ -3143,29 +3194,23 @@ function crear_tabla_insertar_nodo_despues_de(){
 
 		}	
 			
-			//8 //if (ptrNodoActual->ptrNodoSiguiente != NULL){
+			//8 //if (ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
 			document.getElementById("btn_insertar_nodo_despues_de_ejecutar_8_" + direccion_memoria_nodo).onclick = function() {
-
 				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_8_" + direccion_memoria_nodo).style.display = "none";
-
-				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != null){
+				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoInicio.nodo_conectado.key){
 					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_9_" + direccion_memoria_nodo).style.display = "block";
 				}else{
 					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_10_" + direccion_memoria_nodo).style.display = "block";
 				}
-		
 			}
 			document.getElementById("btn_insertar_nodo_despues_de_explicacion_8_" + direccion_memoria_nodo).onclick = function() {
-
 				let objExplicacion = {
 		    		"titulo": "Función void insertar_despues_de()",
 		    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
 		    		"imagen_titulo": "",
 					"imagen_ruta": "",
 		    	};
-
 		    	crear_explicacion(objExplicacion, "none");
-
 			}
 				
 				//9 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
@@ -3393,9 +3438,35 @@ function crear_tabla_insertar_nodo_despues_de(){
 				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_18_" + direccion_memoria_nodo).onclick = function() {
 
 					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_18_" + direccion_memoria_nodo).style.display = "none";
+					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_23_" + direccion_memoria_nodo).style.display = "block";
 					
 					obj_ptrNodoFinal.nodo_conectado.key = objetos[obj_ptrNodoNuevo.nodo_conectado.key].key;
 					
+					actualizar();
+
+					//fin de la función
+
+				}
+
+				document.getElementById("btn_insertar_nodo_despues_de_explicacion_18_" + direccion_memoria_nodo).onclick = function() {
+					let objExplicacion = {
+			    		"titulo": "Función void insertar_despues_de()",
+			    		"explicacion": "El puntero ptrNodoFinal apunta a la dirección de memoria del nuevo nodo creado. Con esto, el nuevo nodo pasa a ser el último nodo de la lista.",
+			    		"imagen_titulo": "",
+						"imagen_ruta": "",
+			    	};
+			    	crear_explicacion(objExplicacion, "none");
+				}
+
+    //23 ptrNodoFinal -> ptrNodoSiguiente = ptrNodoInicio
+
+				document.getElementById("btn_insertar_nodo_despues_de_ejecutar_23_" + direccion_memoria_nodo).onclick = function() {
+
+
+					document.getElementById("btn_insertar_nodo_despues_de_ejecutar_23_" + direccion_memoria_nodo).style.display = "none";
+
+                    objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+
 					actualizar();
 
 					//fin de la función
@@ -3417,19 +3488,17 @@ function crear_tabla_insertar_nodo_despues_de(){
 					desbloquear_funciones();
 
 					mostrar_alerta_funcion_terminada();
-			
-				}
-				document.getElementById("btn_insertar_nodo_despues_de_explicacion_18_" + direccion_memoria_nodo).onclick = function() {
 
+                }
+
+				document.getElementById("btn_insertar_nodo_despues_de_explicacion_23_" + direccion_memoria_nodo).onclick = function() {
 					let objExplicacion = {
 			    		"titulo": "Función void insertar_despues_de()",
 			    		"explicacion": "El puntero ptrNodoFinal apunta a la dirección de memoria del nuevo nodo creado. Con esto, el nuevo nodo pasa a ser el último nodo de la lista.",
 			    		"imagen_titulo": "",
 						"imagen_ruta": "",
 			    	};
-
 			    	crear_explicacion(objExplicacion, "none");
-
 				}
 							
 			//}else{
@@ -3709,6 +3778,22 @@ function crear_tabla_eliminar_nodo_inicio(){
 			'<tr>' +
 				'<td></td>' +
 				'<td>' +
+					'<span style="padding-left: 3em;">' +
+						//ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
+						'ptrNodoFinal <span class="simbolo">-&#62;</span> ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+					'</span>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_eliminar_nodo_inicio_ejecutar_11_' + cont_eliminar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+				'</td>' +
+				'<td>' +
+					'<button id="btn_eliminar_nodo_inicio_explicacion_11_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
+				'</td>' +
+			'</tr>' +
+
+			'<tr>' +
+				'<td></td>' +
+				'<td>' +
 					'<span style="padding-left: 2em;">' +
 						//}
 						'<span class="simbolo">}</span>' +
@@ -3950,28 +4035,38 @@ function crear_tabla_eliminar_nodo_inicio(){
 				
 				//7 //ptrNodoInicio = ptrNodoInicio->ptrNodoSiguiente;
 				document.getElementById("btn_eliminar_nodo_inicio_ejecutar_7_" + cont_eliminar).onclick = function() {
-
 					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_7_" + cont_eliminar).style.display = "none";
-
 					obj_ptrNodoInicio.nodo_conectado.key = objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaSig.key;
-
 					actualizar();
-
-					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_8_" + cont_eliminar).style.display = "block";
-
+					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_11_" + cont_eliminar).style.display = "block";
 				}
 				//7
 				document.getElementById("btn_eliminar_nodo_inicio_explicacion_7_" + cont_eliminar).onclick = function() {
-
 					let objExplicacion = {
 			    		"titulo": "",
 			    		"explicacion": "Ya que la lista tiene mas de un nodo, el ptrNodoInicio debe de apuntar al que es actualmente el segundo nodo se la lista para que pase a ser el primer nodo de la lista simplemente ligada.",
 			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
 			    	};
-
 			    	crear_explicacion(objExplicacion, "block");
+				}
 
+				//11 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
+				document.getElementById("btn_eliminar_nodo_inicio_ejecutar_11_" + cont_eliminar).onclick = function() {
+					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_11_" + cont_eliminar).style.display = "none";
+                    objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+					actualizar();
+					document.getElementById("btn_eliminar_nodo_inicio_ejecutar_8_" + cont_eliminar).style.display = "block";
+				}
+				//11
+				document.getElementById("btn_eliminar_nodo_inicio_explicacion_11_" + cont_eliminar).onclick = function() {
+					let objExplicacion = {
+			    		"titulo": "",
+			    		"explicacion": "Ya que la lista tiene mas de un nodo, el ptrNodoInicio debe de apuntar al que es actualmente el segundo nodo se la lista para que pase a ser el primer nodo de la lista simplemente ligada.",
+			    		"imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
+						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+			    	};
+			    	crear_explicacion(objExplicacion, "block");
 				}
 				
 			//}
@@ -4252,7 +4347,7 @@ function crear_tabla_eliminar_nodo_final(){
 							'<td>' +
 								'<span style="padding-left: 3em;">' +
 									//ptrNodoActual->ptrNodoSiguiente = NULL;
-									'ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+									'ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
 								'</span>' +
 							'</td>' +
 							'<td>' +
@@ -4611,7 +4706,7 @@ function crear_tabla_eliminar_nodo_final(){
 
 					document.getElementById("btn_eliminar_nodo_final_ejecutar_10_" + cont_eliminar).style.display = "none";
 					
-					objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key = null;
+					objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
 
 					actualizar();
 
@@ -4913,7 +5008,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 							'<td>' +
 								'<span style="padding-left: 3em;">' +
 									//if(ptrNodoActual->ptrNodoSiguiente != NULL){
-									'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+									'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
 								'</span>' +
 							'</td>' +
 							'<td>' +
@@ -5149,7 +5244,24 @@ function crear_tabla_eliminar_nodo_informacionx(){
 									'<td>' +
 										'<button id="btn_eliminar_nodo_informacion_explicacion_20_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
 									'</td>' +
-								'</tr>' +	
+								'</tr>' +
+
+								//28 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio;
+								'<tr>' +
+									'<td></td>' +
+									'<td>' +
+										'<span style="padding-left: 5em;">' +
+											//ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
+											'ptrNodoFinal<span>-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio' +
+										'</span>' +
+									'</td>' +
+									'<td>' +
+										'<button id="btn_eliminar_nodo_informacion_ejecutar_28_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+									'</td>' +
+									'<td>' +
+										'<button id="btn_eliminar_nodo_informacion_explicacion_28_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
+									'</td>' +
+								'</tr>' +
 								
 							//}else{
 							'<tr>' +
@@ -5641,7 +5753,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
 					document.getElementById("btn_eliminar_nodo_informacion_ejecutar_10_" + cont_eliminar).style.display = "none";
 					
-					if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != null){
+					if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoInicio.nodo_conectado.key){
 						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_11_" + cont_eliminar).style.display = "block";
 					}else{
 						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_13_" + cont_eliminar).style.display = "block";
@@ -5868,28 +5980,38 @@ function crear_tabla_eliminar_nodo_informacionx(){
 						
 						//20 //ptrNodoInicio = ptrNodoEliminar->ptrNodoSiguiente;
 						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_20_" + cont_eliminar).onclick = function() {
-
 							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_20_" + cont_eliminar).style.display = "none";
-				
 							obj_ptrNodoInicio.nodo_conectado.key = objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key;
-
 							actualizar();
-
-							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
-				
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).style.display = "block";
 						}
 						//20
 						document.getElementById("btn_eliminar_nodo_informacion_explicacion_20_" + cont_eliminar).onclick = function() {
-
 							let objExplicacion = {
 					    		"titulo": "",
 					    		"explicacion": "El segundo nodo de la lista simplemente ligada pasara a ser el primer nodo, ya que se está eliminando el que es actualmente el primer nodo de la lista simplemente ligada.",
 					    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 								"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 					    	};
-
 					    	crear_explicacion(objExplicacion, "block");
+						}
 
+						//28 //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
+						document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).onclick = function() {
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).style.display = "none";
+                            objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+							actualizar();
+							document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
+						}
+						//28
+						document.getElementById("btn_eliminar_nodo_informacion_explicacion_28_" + cont_eliminar).onclick = function() {
+							let objExplicacion = {
+					    		"titulo": "",
+					    		"explicacion": "El segundo nodo de la lista simplemente ligada pasara a ser el primer nodo, ya que se está eliminando el que es actualmente el primer nodo de la lista simplemente ligada.",
+					    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
+								"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
+					    	};
+					    	crear_explicacion(objExplicacion, "block");
 						}
 						
 					//}else{
@@ -6158,16 +6280,16 @@ function crear_tabla_imprimir_lista(){
 						'<td></td>' +
 						'<td>' +
 							'<span style="padding-left: 2em;">' +
-								//4 //while(ptrNodoActual != NULL){
-								'<span class="palabra-reservada">while</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">!=</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+								//4 //do {
+								'<span class="palabra-reservada">do</span> <span class="simbolo">{</span>' +
 							'</span>' +
 						'</td>' +
+
 						'<td>' +
-							'<button id="btn_imprimir_lista_ejecutar_4_' + cont_imprimir + '" type="button" class="btn btn-warning btn-deshabilitar">Evaluar condición</button>' +
 						'</td>' +
 						'<td>' +
-							'<button id="btn_imprimir_lista_explicacion_4_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
 						'</td>' +
+
 					'</tr>' +
 
 						'<tr>' +
@@ -6238,13 +6360,15 @@ function crear_tabla_imprimir_lista(){
 						'<td></td>' +
 						'<td>' +
 							'<span style="padding-left: 2em;">' +
-								//{
-								'<span class="simbolo">{</span>' +
+								//} while(ptrNodoActual != ptrNodoInicio);
+								'<span class="simbolo">}</span> <span class="palabra-reservada">while</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">);</span>' +
 							'</span>' +
 						'</td>' +
 						'<td>' +
+							'<button id="btn_imprimir_lista_ejecutar_4_' + cont_imprimir + '" type="button" class="btn btn-warning btn-deshabilitar">Evaluar condición</button>' +
 						'</td>' +
 						'<td>' +
+							'<button id="btn_imprimir_lista_explicacion_4_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
 						'</td>' +
 					'</tr>' +
 
@@ -6372,7 +6496,7 @@ function crear_tabla_imprimir_lista(){
 
 				actualizar();
 				
-                document.getElementById("btn_imprimir_lista_ejecutar_4_" + cont_imprimir).style.display = "block";
+                document.getElementById("btn_imprimir_lista_ejecutar_5_" + cont_imprimir).style.display = "block";
     
             }
             document.getElementById("btn_imprimir_lista_explicacion_3_" + cont_imprimir).onclick = function() {
@@ -6388,12 +6512,12 @@ function crear_tabla_imprimir_lista(){
 
             }
             
-            //4 //while(ptrNodoActual != NULL){
+            //4 //while (ptrNodoActual != ptrNodoInicio);
             document.getElementById("btn_imprimir_lista_ejecutar_4_" + cont_imprimir).onclick = function() {
                 
                 document.getElementById("btn_imprimir_lista_ejecutar_4_" + cont_imprimir).style.display = "none";
 
-                if(obj_ptrNodoActual.nodo_conectado.key != null){
+                if(obj_ptrNodoActual.nodo_conectado.key != obj_ptrNodoInicio.nodo_conectado.key){
                     document.getElementById("btn_imprimir_lista_ejecutar_5_" + cont_imprimir).style.display = "block";
                 }else{
                     document.getElementById("btn_imprimir_lista_ejecutar_10_" + cont_imprimir).style.display = "block";
@@ -6677,14 +6801,32 @@ function crear_tabla_buscar_en_la_lista(){
 						'<td>' +
 						'</td>' +
 					'</tr>' +
-					
-					//7 //while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
+
+				
+					//17 //bool encontrado = true;
 					'<tr>' +
 						'<td></td>' +
 						'<td>' +
 							'<span style="padding-left: 2em;">' +
-								//while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
-								'<span class="palabra-reservada">while</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">!=</span> NULL <span class="simbolo">&#38;&#38;</span> ptrNodoActual<span class="simbolo">-&#62;</span>dato <span class="simbolo">!=</span> busqueda<span class="simbolo">)</span><span class="simbolo">{</span>' +
+								//bool encontrado = true;
+								'<span class="palabra-reservada">bool</span> encontrado <span class="simbolo">=</span> <span class="palabra-reservada">true</span><span class="simbolo">;</span>'+
+							'</span>' +
+						'</td>' +
+						'<td>' +
+							'<button id="btn_buscar_en_lista_ejecutar_17_' + cont_buscar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+						'</td>' +
+						'<td>' +
+							'<button id="btn_buscar_en_lista_explicacion_17_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
+						'</td>' +
+					'</tr>' +	
+					
+					//7 //while(encontrado && ptrNodoActual->dato != busqueda){
+					'<tr>' +
+						'<td></td>' +
+						'<td>' +
+							'<span style="padding-left: 2em;">' +
+								//while(encontrado && ptrNodoActual->dato != busqueda){
+								'<span class="palabra-reservada">while</span><span class="simbolo">(</span> encontrado <span class="simbolo">&#38;&#38;</span> ptrNodoActual<span class="simbolo">-&#62;</span>dato <span class="simbolo">!=</span> busqueda<span class="simbolo">)</span><span class="simbolo">{</span>' +
 							'</span>' +
 						'</td>' +
 						'<td>' +
@@ -6695,6 +6837,23 @@ function crear_tabla_buscar_en_la_lista(){
 						'</td>' +
 					'</tr>' +
 						
+                    //18 //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //if(ptrNodoActual-> ptrNodoSiguiente != ptrNodoInicio)
+                                '<span class="palabra-reservada">if</span><span class="simbolo">(</span> ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button id="btn_buscar_en_lista_ejecutar_18_' + cont_buscar + '" type="button" class="btn btn-warning btn-deshabilitar">Evaluar condición</button>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button id="btn_buscar_en_lista_explicacion_18_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
+                        '</td>' +
+                    '</tr>' +
+
 						//8 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
 						'<tr>' +
 							'<td></td>' +
@@ -6711,7 +6870,55 @@ function crear_tabla_buscar_en_la_lista(){
 								'<button id="btn_buscar_en_lista_explicacion_8_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
 							'</td>' +
 						'</tr>' +
+
+                    
+                    //7 //} else {
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //} else {
+                                '<span class="simbolo">}</span> <span class="palabra-reservada">else</span> <span class="simbolo">{</span>'+
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                    '</tr>' +
+
+                        //19 //encontrado = false;
+                        '<tr>' +
+                            '<td></td>' +
+                            '<td>' +
+                                '<span style="padding-left: 3em;">' +
+                                    //encontrado = false;
+                                    'encontrado <span class="simbolo">=</span> <span class="palabra-reservada">false</span>' +
+                                '</span>' +
+                            '</td>' +
+                            '<td>' +
+                                '<button id="btn_buscar_en_lista_ejecutar_19_' + cont_buscar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+                            '</td>' +
+                            '<td>' +
+                                '<button id="btn_buscar_en_lista_explicacion_19_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
+                            '</td>' +
+                        '</tr>' +	
 						
+                    //}
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //}
+                                '<span class="simbolo">}</span>' +
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                    '</tr>' +	
+
 					//}
 					'<tr>' +
 						'<td></td>' +
@@ -6727,13 +6934,13 @@ function crear_tabla_buscar_en_la_lista(){
 						'</td>' +
 					'</tr>' +
 					
-					//9 //if(ptrNodoActual == NULL){
+					//9 //if(!encontrado){
 					'<tr>' +
 						'<td></td>' +
 						'<td>' +
 							'<span style="padding-left: 2em;">' +
-								//if(ptrNodoActual == NULL){
-								'<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">==</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+								//if(!encontrado){
+								'<span class="palabra-reservada">if</span><span class="simbolo">(!</span>encontrado<span class="simbolo">)</span><span class="simbolo">{</span>' +
 							'</span>' +
 						'</td>' +
 						'<td>' +
@@ -7005,28 +7212,20 @@ function crear_tabla_buscar_en_la_lista(){
 		
 			//4 //int busqueda;
 			document.getElementById("btn_buscar_en_lista_ejecutar_4_" + cont_buscar).onclick = function() {
-
 				document.getElementById("btn_buscar_en_lista_ejecutar_4_" + cont_buscar).style.display = "none";
-
 				obj_var_busqueda.declarada = true;
 				obj_var_busqueda.valor = 0;
-
 				actualizar();
-				
 				document.getElementById("btn_buscar_en_lista_ejecutar_6_" + cont_buscar).style.display = "block";
-	
 			}
 			document.getElementById("btn_buscar_en_lista_explicacion_4_" + cont_buscar).onclick = function() {
-
 				let objExplicacion = {
 					"titulo": "",
 					"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
 					"imagen_titulo": "",
 					"imagen_ruta": "",
 				};
-
 				crear_explicacion(objExplicacion, "none");
-
 			}
 			
 			//5 //cout<<"Ingrese el valor de (int dato) a buscar:\n";
@@ -7050,7 +7249,7 @@ function crear_tabla_buscar_en_la_lista(){
 	
 						actualizar();
 	
-						document.getElementById("btn_buscar_en_lista_ejecutar_7_" + cont_buscar).style.display = "block";
+						document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).style.display = "block";
 				
 					}else{
 				
@@ -7061,14 +7260,34 @@ function crear_tabla_buscar_en_la_lista(){
 				}
 	
 			}
+            
+            //17 //bool encontrada = true;
+            document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).onclick = function() {
+                document.getElementById("btn_buscar_en_lista_ejecutar_17_" + cont_buscar).style.display = "none";
+
+                obj_var_encontrado.declarada = true;
+				obj_var_encontrado.valor = true;
+
+				actualizar();
+                document.getElementById("btn_buscar_en_lista_ejecutar_7_" + cont_buscar).style.display = "block";
+            }
+            document.getElementById("btn_buscar_en_lista_explicacion_17_" + cont_buscar).onclick = function() {
+            	let objExplicacion = {
+		    		"titulo": "",
+		    		"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
+            }
 			
-			//7 //while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
+			//7 //while(encontrado && ptrNodoActual->dato != busqueda){
 			document.getElementById("btn_buscar_en_lista_ejecutar_7_" + cont_buscar).onclick = function() {
 
 				document.getElementById("btn_buscar_en_lista_ejecutar_7_" + cont_buscar).style.display = "none";
 				
-				if(obj_ptrNodoActual.nodo_conectado.key != null && objetos[obj_ptrNodoActual.nodo_conectado.key].dato.valor != obj_var_busqueda.valor){
-					document.getElementById("btn_buscar_en_lista_ejecutar_8_" + cont_buscar).style.display = "block";
+				if(obj_var_encontrado.valor && objetos[obj_ptrNodoActual.nodo_conectado.key].dato.valor != obj_var_busqueda.valor){
+					document.getElementById("btn_buscar_en_lista_ejecutar_18_" + cont_buscar).style.display = "block";
 				}else{
 					document.getElementById("btn_buscar_en_lista_ejecutar_9_" + cont_buscar).style.display = "block";
 				}
@@ -7086,6 +7305,25 @@ function crear_tabla_buscar_en_la_lista(){
 				crear_explicacion(objExplicacion, "none");
 
 			}	
+
+			//18 //if (ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+			document.getElementById("btn_buscar_en_lista_ejecutar_18_" + cont_buscar).onclick = function() {
+				document.getElementById("btn_buscar_en_lista_ejecutar_18_" + cont_buscar).style.display = "none";
+				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoInicio.nodo_conectado.key){
+					document.getElementById("btn_buscar_en_lista_ejecutar_8_" + cont_buscar).style.display = "block";
+				}else{
+					document.getElementById("btn_buscar_en_lista_ejecutar_19_" + cont_buscar).style.display = "block";
+				}
+			}
+			document.getElementById("btn_buscar_en_lista_explicacion_18_" + cont_buscar).onclick = function() {
+				let objExplicacion = {
+		    		"titulo": "Función void insertar_despues_de()",
+		    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
+			}
 				
 				//8 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
 				document.getElementById("btn_buscar_en_lista_ejecutar_8_" + cont_buscar).onclick = function() {
@@ -7111,15 +7349,33 @@ function crear_tabla_buscar_en_la_lista(){
 			    	crear_explicacion(objExplicacion, "block");
 
 				}	
+
+            
+            //19 //encontrada = false;
+            document.getElementById("btn_buscar_en_lista_ejecutar_19_" + cont_buscar).onclick = function() {
+                document.getElementById("btn_buscar_en_lista_ejecutar_19_" + cont_buscar).style.display = "none";
+				obj_var_encontrado.valor = false;
+				actualizar();
+                document.getElementById("btn_buscar_en_lista_ejecutar_7_" + cont_buscar).style.display = "block";
+            }
+            document.getElementById("btn_buscar_en_lista_explicacion_19_" + cont_buscar).onclick = function() {
+            	let objExplicacion = {
+		    		"titulo": "",
+		    		"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
+            }
 				
 			//}
 			
-			//9 //if(ptrNodoActual == NULL){
+			//9 //if(!encontrado){
 			document.getElementById("btn_buscar_en_lista_ejecutar_9_" + cont_buscar).onclick = function() {
 
 				document.getElementById("btn_buscar_en_lista_ejecutar_9_" + cont_buscar).style.display = "none";
 
-				if(obj_ptrNodoActual.nodo_conectado.key == null){
+				if(!obj_var_encontrado.valor){
 					document.getElementById("btn_buscar_en_lista_ejecutar_10_" + cont_buscar).style.display = "block";
 				}else{
 					document.getElementById("btn_buscar_en_lista_ejecutar_11_" + cont_buscar).style.display = "block";
@@ -7275,6 +7531,9 @@ function crear_tabla_buscar_en_la_lista(){
 			obj_var_busqueda.declarada = false;
 			obj_var_busqueda.valor = 0;
 
+			obj_var_encontrado.declarada = false;
+			obj_var_encontrado.valor = false;
+
 			actualizar();
 
 			cont_buscar += 1;
@@ -7416,14 +7675,32 @@ function crear_tabla_modificar_nodo(){
 						'<td>' +
 						'</td>' +
                     '</tr>' +	
+
                     
-                    //7 //while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
+                    //15 //bool encontrado = true;
+                    '<tr>' +
+						'<td></td>' +
+						'<td>' +
+							'<span style="padding-left: 2em;">' +
+								//bool encontrado = true;
+								'<span class="palabra-reservada">bool</span> encontrado <span class="simbolo">=</span> <span class="palabra-reservada">true</span><span class="simbolo">;</span>'+
+							'</span>' +
+						'</td>' +
+						'<td>' +
+							'<button id="btn_modificar_nodo_ejecutar_15_' + cont_modificar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+						'</td>' +
+						'<td>' +
+							'<button id="btn_modificar_nodo_explicacion_15_' + cont_modificar + '" type="button" class="btn btn-info">explicación</button>' +
+						'</td>' +
+                    '</tr>' +	
+                    
+                    //7 //while(encontrado && ptrNodoActual->dato != busqueda){
                     '<tr>' +
                         '<td></td>' +
                         '<td>' +
                             '<span style="padding-left: 2em;">' +
-                                //while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
-                                '<span class="palabra-reservada">while</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">!=</span> NULL <span class="simbolo">&#38;&#38;</span> ptrNodoActual<span class="simbolo">-&#62;</span>dato <span class="simbolo">!=</span> busqueda<span class="simbolo">)</span><span class="simbolo">{</span>' +
+                                //while(encontrado && ptrNodoActual->dato != busqueda){
+                                '<span class="palabra-reservada">while</span><span class="simbolo">(</span> encontrado <span class="simbolo">&#38;&#38;</span> ptrNodoActual<span class="simbolo">-&#62;</span>dato <span class="simbolo">!=</span> busqueda<span class="simbolo">)</span><span class="simbolo">{</span>' +
                             '</span>' +
                         '</td>' +
                         '<td>' +
@@ -7431,6 +7708,24 @@ function crear_tabla_modificar_nodo(){
                         '</td>' +
                         '<td>' +
                             '<button id="btn_modificar_nodo_explicacion_7_' + cont_modificar + '" type="button" class="btn btn-info">explicación</button>' +
+                        '</td>' +
+                    '</tr>' +
+
+                    
+                    //16 //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //if(ptrNodoActual-> ptrNodoSiguiente != ptrNodoInicio)
+                                '<span class="palabra-reservada">if</span><span class="simbolo">(</span> ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button id="btn_modificar_nodo_ejecutar_16_' + cont_modificar + '" type="button" class="btn btn-warning btn-deshabilitar">Evaluar condición</button>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button id="btn_modificar_nodo_explicacion_16_' + cont_modificar + '" type="button" class="btn btn-info">explicación</button>' +
                         '</td>' +
                     '</tr>' +
 
@@ -7451,6 +7746,54 @@ function crear_tabla_modificar_nodo(){
                             '</td>' +
                         '</tr>' +	
 
+                    
+                    //7 //} else {
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //} else {
+                                '<span class="simbolo">}</span> <span class="palabra-reservada">else</span> <span class="simbolo">{</span>'+
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                    '</tr>' +
+
+                        //17 //encontrado = false;
+                        '<tr>' +
+                            '<td></td>' +
+                            '<td>' +
+                                '<span style="padding-left: 3em;">' +
+                                    //encontrado = false;
+                                    'encontrado <span class="simbolo">=</span> <span class="palabra-reservada">false</span>' +
+                                '</span>' +
+                            '</td>' +
+                            '<td>' +
+                                '<button id="btn_modificar_nodo_ejecutar_17_' + cont_modificar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+                            '</td>' +
+                            '<td>' +
+                                '<button id="btn_modificar_nodo_explicacion_17_' + cont_modificar + '" type="button" class="btn btn-info">explicación</button>' +
+                            '</td>' +
+                        '</tr>' +	
+
+                    //}
+                    '<tr>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<span style="padding-left: 2em;">' +
+                                //}
+                                '<span class="simbolo">}</span>' +
+                            '</span>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                    '</tr>' +	
+
                     //}
                     '<tr>' +
                         '<td></td>' +
@@ -7466,13 +7809,13 @@ function crear_tabla_modificar_nodo(){
                         '</td>' +
                     '</tr>' +	
                     
-                    //9 //if(ptrNodoActual == NULL){
+                    //9 //if(!encontrado){
                     '<tr>' +
                         '<td></td>' +
                         '<td>' +
                             '<span style="padding-left: 2em;">' +
-                                //if(ptrNodoActual == NULL){
-                                '<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual <span class="simbolo">==</span> NULL<span class="simbolo">)</span><span class="simbolo">{</span>' +
+                                //if(!encontrado){
+                                '<span class="palabra-reservada">if</span><span class="simbolo">(!</span>encontrado<span class="simbolo">)</span><span class="simbolo">{</span>' +
                             '</span>' +
                         '</td>' +
                         '<td>' +
@@ -7710,28 +8053,39 @@ function crear_tabla_modificar_nodo(){
             
             //4 //int busqueda;
             document.getElementById("btn_modificar_nodo_ejecutar_4_" + cont_modificar).onclick = function() {
-
                 document.getElementById("btn_modificar_nodo_ejecutar_4_" + cont_modificar).style.display = "none";
-
                 obj_var_busqueda.declarada = true;
 				obj_var_busqueda.valor = 0;
-
 				actualizar();
-
                 document.getElementById("btn_modificar_nodo_ejecutar_6_" + cont_modificar).style.display = "block";
-    
             }
             document.getElementById("btn_modificar_nodo_explicacion_4_" + cont_modificar).onclick = function() {
-
             	let objExplicacion = {
 		    		"titulo": "",
 		    		"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
 		    		"imagen_titulo": "",
 					"imagen_ruta": "",
 		    	};
-
 		    	crear_explicacion(objExplicacion, "none");
+            }
 
+            
+            //15 //bool encontrada = true;
+            document.getElementById("btn_modificar_nodo_ejecutar_15_" + cont_modificar).onclick = function() {
+                document.getElementById("btn_modificar_nodo_ejecutar_15_" + cont_modificar).style.display = "none";
+                obj_var_encontrado.declarada = true;
+				obj_var_encontrado.valor = true;
+				actualizar();
+                document.getElementById("btn_modificar_nodo_ejecutar_7_" + cont_modificar).style.display = "block";
+            }
+            document.getElementById("btn_modificar_nodo_explicacion_15_" + cont_modificar).onclick = function() {
+            	let objExplicacion = {
+		    		"titulo": "",
+		    		"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
             }
             
             //5 //cout<<"Ingrese el dato a modificar:\n";
@@ -7755,7 +8109,7 @@ function crear_tabla_modificar_nodo(){
 	
 						actualizar();
 	
-						document.getElementById("btn_modificar_nodo_ejecutar_7_" + cont_modificar).style.display = "block";
+						document.getElementById("btn_modificar_nodo_ejecutar_15_" + cont_modificar).style.display = "block";
 				
 					}else{
 				
@@ -7767,13 +8121,13 @@ function crear_tabla_modificar_nodo(){
     
             }
             
-            //7 //while(ptrNodoActual != NULL && ptrNodoActual->dato != busqueda){
+            //7 //while(encontrado && ptrNodoActual->dato != busqueda){
             document.getElementById("btn_modificar_nodo_ejecutar_7_" + cont_modificar).onclick = function() {
 
                 document.getElementById("btn_modificar_nodo_ejecutar_7_" + cont_modificar).style.display = "none";
 
-                if(obj_ptrNodoActual.nodo_conectado.key != null && objetos[obj_ptrNodoActual.nodo_conectado.key].dato.valor != obj_var_busqueda.valor){
-                    document.getElementById("btn_modificar_nodo_ejecutar_8_" + cont_modificar).style.display = "block";
+                if(obj_var_encontrado.valor && objetos[obj_ptrNodoActual.nodo_conectado.key].dato.valor != obj_var_busqueda.valor){
+                    document.getElementById("btn_modificar_nodo_ejecutar_16_" + cont_modificar).style.display = "block";
                 }else{
                     document.getElementById("btn_modificar_nodo_ejecutar_9_" + cont_modificar).style.display = "block";
                 }
@@ -7791,6 +8145,26 @@ function crear_tabla_modificar_nodo(){
 		    	crear_explicacion(objExplicacion, "none");
 
             }
+
+			
+			//16 //if (ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
+			document.getElementById("btn_modificar_nodo_ejecutar_16_" + cont_modificar).onclick = function() {
+				document.getElementById("btn_modificar_nodo_ejecutar_16_" + cont_modificar).style.display = "none";
+				if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoInicio.nodo_conectado.key){
+					document.getElementById("btn_modificar_nodo_ejecutar_8_" + cont_modificar).style.display = "block";
+				}else{
+					document.getElementById("btn_modificar_nodo_ejecutar_17_" + cont_modificar).style.display = "block";
+				}
+			}
+			document.getElementById("btn_modificar_nodo_explicacion_16_" + cont_modificar).onclick = function() {
+				let objExplicacion = {
+		    		"titulo": "Función void insertar_despues_de()",
+		    		"explicacion": "Se verifica si ptrNodoActual no está apuntando al último nodo de la lista simplemente ligada. En caso de ser verdad, se sigue con el recorrido de la lista simplemente ligada, en caso de ser negativo, el puntero ptrNodoActual se encuentra en el último nodo de la lista por lo que la variable encontrado pasara a false.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
+			}
 
                 //8 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
                 document.getElementById("btn_modificar_nodo_ejecutar_8_" + cont_modificar).onclick = function() {
@@ -7819,12 +8193,29 @@ function crear_tabla_modificar_nodo(){
 
             //}
             
-            //9 //if(ptrNodoActual == NULL){
+            //17 //encontrada = false;
+            document.getElementById("btn_modificar_nodo_ejecutar_17_" + cont_modificar).onclick = function() {
+                document.getElementById("btn_modificar_nodo_ejecutar_17_" + cont_modificar).style.display = "none";
+				obj_var_encontrado.valor = false;
+				actualizar();
+                document.getElementById("btn_modificar_nodo_ejecutar_7_" + cont_modificar).style.display = "block";
+            }
+            document.getElementById("btn_modificar_nodo_explicacion_17_" + cont_modificar).onclick = function() {
+            	let objExplicacion = {
+		    		"titulo": "",
+		    		"explicacion": "Declaración de variable tipo int que guardara el número a buscar en la lista.",
+		    		"imagen_titulo": "",
+					"imagen_ruta": "",
+		    	};
+		    	crear_explicacion(objExplicacion, "none");
+            }
+            
+            //9 //if(!encontrado){
             document.getElementById("btn_modificar_nodo_ejecutar_9_" + cont_modificar).onclick = function() {
 
                 document.getElementById("btn_modificar_nodo_ejecutar_9_" + cont_modificar).style.display = "none";
 
-                if(obj_ptrNodoActual.nodo_conectado.key == null){
+                if(!obj_var_encontrado.valor){
                     document.getElementById("btn_modificar_nodo_ejecutar_10_" + cont_modificar).style.display = "block";
                 }else{
                     document.getElementById("btn_modificar_nodo_ejecutar_12_" + cont_modificar).style.display = "block";
@@ -7945,6 +8336,9 @@ function crear_tabla_modificar_nodo(){
 
             obj_var_busqueda.declarada = false;
             obj_var_busqueda.valor = 0;
+
+            obj_var_encontrado.declarada = false;
+            obj_var_encontrado.valor = false;
 
             actualizar();
 
