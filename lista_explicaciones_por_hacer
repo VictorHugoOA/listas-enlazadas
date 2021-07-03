@@ -9,3 +9,6 @@ Explicación de if(ptrNodoEliminar != ptrNodoFinal){ en función eliminar_funcio
 Explicación de ptrNodoEliminatr->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior en función eliminar_funcionX
 
 Agregar impresión del puntero anterior a función imprimir_lista
+
+//Nueva lista
+

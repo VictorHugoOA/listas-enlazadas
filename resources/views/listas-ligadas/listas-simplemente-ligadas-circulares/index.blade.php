@@ -1227,7 +1227,7 @@
 					ctx.stroke();
 
 					const punta_tamanio = 5;
-					const angle = Math.atan2(endY - middleY, endX - middleX);
+					const angle = Math.atan2(endY - (middleY - 20 ), endX - (middleX + offsetX/2));
 
 					ctx.beginPath();
 					ctx.moveTo(endX, endY);

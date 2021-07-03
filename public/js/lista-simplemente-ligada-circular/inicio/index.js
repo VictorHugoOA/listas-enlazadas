@@ -994,7 +994,8 @@ function crear_tabla_insertar_nodo_inicio(){
 		document.getElementById("btn_crear_nodo_inicio_explicacion_8_" + direccion_memoria_nodo).onclick = function() {
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "El ptrNodoInicio debe de apuntar a la dirección de memoria del nuevo nodo, para que dicho nodo sea el nuevo nodo que esta al inicio de la lista.",
+	    		"explicacion": "El ptrNodoSiguiente del nodo final siempre deba apuntar al nodo de inicio, y esto tambien cuando se  agrega nuevo nodo al principio. Así mantenemos \
+								la lista como una lista circular",
 	    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 			};
@@ -1319,12 +1320,14 @@ function crear_tabla_insertar_nodo_final(){
 		}
 		//7
 		document.getElementById("btn_crear_nodo_final_explicacion_7_" + direccion_memoria_nodo).onclick = function() {
+
 			let objExplicacion = {
 	    		"titulo": "",
 	    		"explicacion": "El miembro ptrNodoSiguiente del nodo que actualmente es el nodo final de la lista, debe de apuntar a la dirección de memoria del nuevo nodo.",
 	    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 			};
+
 			crear_explicacion(objExplicacion, "block");
 		}
 
@@ -1343,11 +1346,12 @@ function crear_tabla_insertar_nodo_final(){
 		document.getElementById("btn_crear_nodo_final_explicacion_8_" + direccion_memoria_nodo).onclick = function() {
 			let objExplicacion = {
 	    		"titulo": "",
-	    		"explicacion": "El miembro ptrNodoSiguiente del nodo que actualmente es el nodo final de la lista, debe de apuntar a la dirección de memoria del nuevo nodo.",
+	    		"explicacion": "El miembro ptrNodoSiguiente del nodo nuevo debe apuntar al nodo del principio. Como el nodo nuevo se volverá el final de la lista \
+								el siguiente del nodo nuevo es el nodo inicio, y mantener la lista como una lista circular.",
 	    		"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 				"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 			};
-			crear_explicacion(objExplicacion, "block");
+			crear_explicacion(objExplicacion, "none");
 		}
 
 	//}
@@ -2397,13 +2401,16 @@ function crear_tabla_insertar_nodo_antes_de(){
                 }
 
 				document.getElementById("btn_insertar_nodo_antes_de_explicacion_31_" + direccion_memoria_nodo).onclick = function() {
+
 					let objExplicacion = {
 						"titulo": "",
-						"explicacion": "El puntero ptrNodoInicio debe de apuntar a la dirección de memoria del nuevo nodo, para que dicho nodo sea el nuevo nodo que esta al inicio de la lista.",
+						"explicacion": "El ptrNodoSiguiente del nodo final siempre deba apuntar al nodo de inicio, y esto tambien cuando se  agrega nuevo nodo al principio. Así mantenemos \
+										la lista como una lista circular",
 						"imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
 						"imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
 					};
-					crear_explicacion(objExplicacion, "block");
+
+					crear_explicacion(objExplicacion, "none");
 				}
 				
 			//}else{
