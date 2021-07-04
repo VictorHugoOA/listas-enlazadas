@@ -1,4 +1,4 @@
-<p align="center"><img style="background-style: #fff" src="https://uaa.mx/content/Artboard-190.png"></p>
+<p align="center"><img style="background-color: #fff" src="https://uaa.mx/content/Artboard-190.png"></p>
 
 ## Universidad Autonoma de Aguascalientes
 
