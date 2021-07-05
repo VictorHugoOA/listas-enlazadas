@@ -1206,7 +1206,6 @@
 			}
 
 			if(objeto.ptrLigaSig.key != null){
-
 				if(objeto.ptrLigaSig.key == obj_ptrNodoInicio.nodo_conectado.key){
 
 					let objInicio = objetos[obj_ptrNodoInicio.nodo_conectado.key];
