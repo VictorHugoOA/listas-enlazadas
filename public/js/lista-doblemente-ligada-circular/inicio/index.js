@@ -4504,13 +4504,13 @@ function crear_tabla_eliminar_nodo_final(){
         '</td>' +
         '</tr>' +
 
-        //nodo *ptrNodoActual = ptrNodoInicio;
+        //nodo *ptrNodoActual = ptrNodoInicio->ptrNodoAnterior->ptrNodoAnterior;
         '<tr>' +
         '<td></td>' +
         '<td>' +
         '<span style="padding-left: 3em;">' +
-        //nodo *ptrNodoActual = ptrNodoInicio;
-        'nodo <span class="simbolo">*</span>ptrNodoActual <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
+        //nodo *ptrNodoActual = ptrNodoInicio->ptrNodoAnterior->ptrNodoAnterior;
+        'nodo <span class="simbolo">*</span>ptrNodoActual <span class="simbolo">=</span> ptrNodoInicio <span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">;</span>' +
         '</span>' +
         '</td>' +
         '<td>' +
@@ -4521,63 +4521,24 @@ function crear_tabla_eliminar_nodo_final(){
         '</td>' +
         '</tr>' +
 
-        //while(ptrNodoActual->ptrNodoSiguiente != ptrNodoFinal){
-        '<tr>' +
-        '<td></td>' +
-        '<td>' +
-        '<span style="padding-left: 3em;">' +
-        //while(ptrNodoActual->ptrNodoSiguiente != ptrNodoFinal){
-        '<span class="palabra-reservada">while</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoFinal<span class="simbolo">)</span><span class="simbolo">{</span>' +
-        '</span>' +
-        '</td>' +
-        '<td>' +
-        '<button id="btn_eliminar_nodo_final_ejecutar_8_' + cont_eliminar+ '" type="button" class="btn btn-warning btn-deshabilitar">Evaluar condición</button>' +
-        '</td>' +
-        '<td>' +
-        '<button id="btn_eliminar_nodo_final_explicacion_8_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
-        '</td>' +
-        '</tr>' +
 
-        //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
+        //ptrNodoActual->ptrNodoSiguiente = ptrNodoInicio;
         '<tr>' +
         '<td></td>' +
         '<td>' +
-        '<span style="padding-left: 4em;">' +
-        //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
-        'ptrNodoActual <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">;</span>' +
-        '</span>' +
-        '</td>' +
-        '<td>' +
-        '<button id="btn_eliminar_nodo_final_ejecutar_9_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">Ejecutar</button>' +
-        '</td>' +
-        '<td>' +
-        '<button id="btn_eliminar_nodo_final_explicacion_9_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
-        '</td>' +
-        '</tr>' +
 
-        //}
-        '<tr>' +
-        '<td></td>' +
-        '<td>' +
         '<span style="padding-left: 3em;">' +
-        //}
-        '<span class="simbolo">}</span>' +
-        '</span>' +
-        '</td>' +
-        '<td>' +
-        '</td>' +
-        '<td>' +
-        '</td>' +
-        '</tr>' +
-
-        //ptrNodoActual->ptrNodoSiguiente = NULL;
-        '<tr>' +
-        '<td></td>' +
-        '<td>' +
-        '<span style="padding-left: 3em;">' +
-        //ptrNodoActual->ptrNodoSiguiente = NULL;
+        //ptrNodoActual->ptrNodoSiguiente = ptrNodoInicio;
         'ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
         '</span>' +
+
+        '<br>' +
+        
+        '<span style="padding-left: 3em;">' +
+        //ptrNodoInicio->ptrNodoAnterior = ptrNodoActual;
+        'ptrNodoInicio<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">;</span>' +
+        '</span>' +
+
         '</td>' +
         '<td>' +
         '<button id="btn_eliminar_nodo_final_ejecutar_10_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">Ejecutar</button>' +
@@ -4849,17 +4810,17 @@ function crear_tabla_eliminar_nodo_final(){
 
     //}else{
 
-    //7 //nodo *ptrNodoActual = ptrNodoInicio;
+    //7 //nodo *ptrNodoActual = ptrNodoInicio->ptrNodoAnterior->ptrNodoAnterior;
     document.getElementById("btn_eliminar_nodo_final_ejecutar_7_" + cont_eliminar).onclick = function() {
 
         document.getElementById("btn_eliminar_nodo_final_ejecutar_7_" + cont_eliminar).style.display = "none";
 
         obj_ptrNodoActual.declarada = true;
-        obj_ptrNodoActual.nodo_conectado.key = obj_ptrNodoInicio.nodo_conectado.key;
+        obj_ptrNodoActual.nodo_conectado.key = objetos[objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key].ptrLigaAnt.key;
 
         actualizar();
 
-        document.getElementById("btn_eliminar_nodo_final_ejecutar_8_" + cont_eliminar).style.display = "block";
+        document.getElementById("btn_eliminar_nodo_final_ejecutar_10_" + cont_eliminar).style.display = "block";
 
     }
     //7
@@ -4867,7 +4828,7 @@ function crear_tabla_eliminar_nodo_final(){
 
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Se declara una nueva variable tipo puntero a la que se le ira asignando la dirección de memoria de todos los nodos para ir recorriendo la lista hasta llegar al penúltimo nodo. Ya que se eliminará el último nodo de la lista simplemente ligada y el penúltimo nodo pasará a ser el último de la lista simplemente ligada.",
+            "explicacion": "Se declara una variable puntero que va a tener el valor el nodo anterior al nodo final",
             "imagen_titulo": "Plan de programación 1 - Sintaxis declaración variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_1_declaracion_puntero.PNG",
         };
@@ -4876,66 +4837,17 @@ function crear_tabla_eliminar_nodo_final(){
 
     }
 
-    //8 //while(ptrNodoActual->ptrNodoSiguiente != ptrNodoFinal){
-    document.getElementById("btn_eliminar_nodo_final_ejecutar_8_" + cont_eliminar).onclick = function() {
-
-        document.getElementById("btn_eliminar_nodo_final_ejecutar_8_" + cont_eliminar).style.display = "none";
-
-        if(objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key != obj_ptrNodoFinal.nodo_conectado.key){
-            document.getElementById("btn_eliminar_nodo_final_ejecutar_9_" + cont_eliminar).style.display = "block";
-        }else{
-            document.getElementById("btn_eliminar_nodo_final_ejecutar_10_" + cont_eliminar).style.display = "block";
-        }
-
-    }
-    //8
-    document.getElementById("btn_eliminar_nodo_final_explicacion_8_" + cont_eliminar).onclick = function() {
-
-        let objExplicacion = {
-            "titulo": "",
-            "explicacion": "Ciclo While con el que se recorrerá la lista simplemente ligada hasta llegar al penúltimo nodo de la lista simplemente ligada.",
-            "imagen_titulo": "",
-            "imagen_ruta": "",
-        };
-
-        crear_explicacion(objExplicacion, "none");
-
-    }
-
-    //9 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
-    document.getElementById("btn_eliminar_nodo_final_ejecutar_9_" + cont_eliminar).onclick = function() {
-
-        document.getElementById("btn_eliminar_nodo_final_ejecutar_9_" + cont_eliminar).style.display = "none";
-
-        obj_ptrNodoActual.nodo_conectado.key = objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key;
-
-        actualizar();
-
-        document.getElementById("btn_eliminar_nodo_final_ejecutar_8_" + cont_eliminar).style.display = "block";
-
-    }
-    //9
-    document.getElementById("btn_eliminar_nodo_final_explicacion_9_" + cont_eliminar).onclick = function() {
-
-        let objExplicacion = {
-            "titulo": "",
-            "explicacion": "Al puntero ptrNodoActual se le asigna la dirección de memoria del siguiente nodo.",
-            "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
-            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
-        };
-
-        crear_explicacion(objExplicacion, "block");
-
-    }
 
     //}
 
-    //10 //ptrNodoActual->ptrNodoSiguiente = NULL;
+    //10 //ptrNodoActual->ptrNodoSiguiente = ptrNodoInicio;
+    //ptrNodoInicio->ptrNodoAnterior = ptrNodoActual;
     document.getElementById("btn_eliminar_nodo_final_ejecutar_10_" + cont_eliminar).onclick = function() {
 
         document.getElementById("btn_eliminar_nodo_final_ejecutar_10_" + cont_eliminar).style.display = "none";
 
         objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+        objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoActual.nodo_conectado.key;
 
         actualizar();
 
@@ -4947,7 +4859,7 @@ function crear_tabla_eliminar_nodo_final(){
 
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Al miembro ptrNodoSiguiente del nodo apuntado por el puntero ptrNodoActual, se le asigna NULL, para indicar que es el último nodo de la lista.",
+            "explicacion": "El miembro ptrNodoSiguiente de ptrNodoActual va a apuntar al nodo de inicio, y el miembro ptrNodoAnterior de ptrNodoInicio va a apuntar al ptrNodoActual",
             "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
