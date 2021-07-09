@@ -1,5 +1,4 @@
 console.log("funciones exclusivas listas simplemente ligadas");
-
 function bloquear_funciones(){
 
     document.getElementById("btn_funciones_crear_nodo").disabled = true;
