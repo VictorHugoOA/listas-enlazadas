@@ -3997,10 +3997,19 @@ function crear_tabla_eliminar_nodo_inicio(){
         '<tr>' +
         '<td></td>' +
         '<td>' +
+
         '<span style="padding-left: 3em;">' +
         //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
         'ptrNodoFinal <span class="simbolo">-&#62;</span> ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio<span class="simbolo">;</span>' +
         '</span>' +
+
+        '<br>' +
+
+        '<span style="padding-left: 3em;">' +
+        //ptrNodoInicio->ptrNodoAnterior = ptrNodoFinal
+        'ptrNodoInicio <span class="simbolo">-&#62;</span> ptrNodoAnterior <span class="simbolo">=</span> ptrNodoFinal<span class="simbolo">;</span>' +
+        '</span>' +
+
         '</td>' +
         '<td>' +
         '<button id="btn_eliminar_nodo_inicio_ejecutar_11_' + cont_eliminar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -4274,6 +4283,7 @@ function crear_tabla_eliminar_nodo_inicio(){
     document.getElementById("btn_eliminar_nodo_inicio_ejecutar_11_" + cont_eliminar).onclick = function() {
         document.getElementById("btn_eliminar_nodo_inicio_ejecutar_11_" + cont_eliminar).style.display = "none";
         objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
+        objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoFinal.nodo_conectado.key;
         actualizar();
         document.getElementById("btn_eliminar_nodo_inicio_ejecutar_8_" + cont_eliminar).style.display = "block";
     }
@@ -4281,7 +4291,7 @@ function crear_tabla_eliminar_nodo_inicio(){
     document.getElementById("btn_eliminar_nodo_inicio_explicacion_11_" + cont_eliminar).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Ya que la lista tiene mas de un nodo, el ptrNodoInicio debe de apuntar al que es actualmente el segundo nodo se la lista para que pase a ser el primer nodo de la lista simplemente ligada.",
+            "explicacion": "El miembro ptrNodoSiguiente del nodo final debe apuntar al nuevo nodo de inicio, y el miembro ptrNodoAnterior del nuevo nodo inicio debe apuntar al nodo final para elimiar el nodo al principio",
             "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
