@@ -6470,7 +6470,7 @@ function crear_tabla_imprimir_lista(){
         '<td>' +
         '<span style="padding-left: 3em;">' +
         //7 //cout<<"valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
-        'cout HOla<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoSiguiente): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+        'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoSiguiente): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
         '</span>' +
         '</td>' +
         '<td>' +
