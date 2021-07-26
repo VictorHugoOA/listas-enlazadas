@@ -6470,7 +6470,7 @@ function crear_tabla_imprimir_lista(){
         '<td>' +
         '<span style="padding-left: 3em;">' +
         //7 //cout<<"valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
-        'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoSiguiente): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+        'cout HOla<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoSiguiente): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
         '</span>' +
         '</td>' +
         '<td>' +
@@ -6478,6 +6478,22 @@ function crear_tabla_imprimir_lista(){
         '</td>' +
         '<td>' +
         '<button id="btn_imprimir_lista_explicacion_7_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
+        '</td>' +
+        '</tr>' +
+
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 3em;">' +
+        //11 //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+        'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoAnterior): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo"></span><span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_imprimir_lista_ejecutar_11_' + cont_imprimir + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_imprimir_lista_explicacion_11_' + cont_imprimir + '" type="button" class="btn btn-info">explicación</button>' +
         '</td>' +
         '</tr>' +
 
@@ -6723,28 +6739,37 @@ function crear_tabla_imprimir_lista(){
         crear_explicacion(objExplicacion, "block");
 
     }
-
+	
     //7 //cout<<"valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
     document.getElementById("btn_imprimir_lista_ejecutar_7_" + cont_imprimir).onclick = function() {
-
         document.getElementById("btn_imprimir_lista_ejecutar_7_" + cont_imprimir).style.display = "none";
-
         alert('Valor de (nodo *ptrNodoSiguiente): ' + objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key);
-
-        document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).style.display = "block";
-
+        document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).style.display = "block";
     }
     document.getElementById("btn_imprimir_lista_explicacion_7_" + cont_imprimir).onclick = function() {
-
         let objExplicacion = {
             "titulo": "",
             "explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
             "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
-
         crear_explicacion(objExplicacion, "block");
+    }
 
+    // 11//cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+    document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).onclick = function() {
+        document.getElementById("btn_imprimir_lista_ejecutar_11_" + cont_imprimir).style.display = "none";
+        alert('Valor de (nodo *ptrNodoAnterior): ' + objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaAnt.key);
+        document.getElementById("btn_imprimir_lista_ejecutar_8_" + cont_imprimir).style.display = "block";
+    }
+    document.getElementById("btn_imprimir_lista_explicacion_11_" + cont_imprimir).onclick = function() {
+        let objExplicacion = {
+            "titulo": "",
+            "explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del nodo anterior de la lista doblemente ligada circular.",
+            "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+        };
+        crear_explicacion(objExplicacion, "block");
     }
 
     //8 //ptrNodoActual = ptrNodoActual->ptrNodoSiguiente;
