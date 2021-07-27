@@ -7216,6 +7216,23 @@ function crear_tabla_buscar_en_la_lista(){
         '</td>' +
         '</tr>' +	
 
+        //20 //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 3em;">' +
+        //cout<<"valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+        'cout<span class="simbolo">&#60;&#60;</span><span class="impresion">"valor de (nodo *ptrNodoAnterior): "</span><span class="simbolo">&#60;&#60;</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoAnterior<span class="simbolo">&#60;&#60;</span><span class="impresion">"&#92;n&#92;n"</span><span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_buscar_en_lista_ejecutar_20_' + cont_buscar + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_buscar_en_lista_explicacion_20_' + cont_buscar + '" type="button" class="btn btn-info">explicación</button>' +
+        '</td>' +
+        '</tr>' +	
+
         //}
         '<tr>' +
         '<td></td>' +
@@ -7646,27 +7663,35 @@ function crear_tabla_buscar_en_la_lista(){
 
     //14 //cout<<"Valor de (nodo *ptrNodoSiguiente): "<<ptrNodoActual->ptrNodoSiguiente<<"\n\n";
     document.getElementById("btn_buscar_en_lista_ejecutar_14_" + cont_buscar).onclick = function() {
-
         document.getElementById("btn_buscar_en_lista_ejecutar_14_" + cont_buscar).style.display = "none";
-
         alert('Valor de (nodo *ptrNodoSiguiente): '+ objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key);
-
-        document.getElementById("btn_buscar_en_lista_ejecutar_16_" + cont_buscar).style.display = "block";
-
+        document.getElementById("btn_buscar_en_lista_ejecutar_20_" + cont_buscar).style.display = "block";
     }
     document.getElementById("btn_buscar_en_lista_explicacion_14_" + cont_buscar).onclick = function() {
-
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista simplemente ligada.",
+            "explicacion": "Se imprime en consola el valor del miembro ptrNodoSiguiente del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del siguiente nodo de la lista doblemente ligada circular.",
             "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
-
         crear_explicacion(objExplicacion, "block");
-
     }	
 
+    //20 //cout<<"Valor de (nodo *ptrNodoAnterior): "<<ptrNodoActual->ptrNodoAnterior<<"\n\n";
+    document.getElementById("btn_buscar_en_lista_ejecutar_20_" + cont_buscar).onclick = function() {
+        document.getElementById("btn_buscar_en_lista_ejecutar_20_" + cont_buscar).style.display = "none";
+        alert('Valor de (nodo *ptrNodoSiguiente): '+ objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaAnt.key);
+        document.getElementById("btn_buscar_en_lista_ejecutar_16_" + cont_buscar).style.display = "block";
+    }
+    document.getElementById("btn_buscar_en_lista_explicacion_20_" + cont_buscar).onclick = function() {
+        let objExplicacion = {
+            "titulo": "",
+            "explicacion": "Se imprime en consola el valor del miembro ptrNodoAnterior del nodo al que apunta ptrNodoActual, el cual corresponde a la dirección de memoria del nodo previo en la lista doblemente ligada circular.",
+            "imagen_titulo": "Plan de programación 6 - Acceder a un miembro de la estructura por medio de una variable tipo puntero.",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+        };
+        crear_explicacion(objExplicacion, "block");
+    }	
     //}
 
     //}else{
