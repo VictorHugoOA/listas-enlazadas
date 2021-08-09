@@ -2547,7 +2547,7 @@ function crear_tabla_insertar_nodo_antes_de(){
     document.getElementById("btn_insertar_nodo_antes_de_explicacion_34_" + direccion_memoria_nodo).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+            "explicacion": "Se inicializa el miembro ptrNodoAnterior del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
@@ -2651,7 +2651,7 @@ function crear_tabla_insertar_nodo_antes_de(){
     document.getElementById("btn_insertar_nodo_antes_de_explicacion_32_" + direccion_memoria_nodo).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "Se asigna la dirección de memoria del que es actualmente el primer nodo de la lista al miembro ptrNodoSiguiente del nuevo nodo creado.",
+            "explicacion": "Se asigna la dirección de memoria del que es actualmente del ultimo nodo de la lista al miembro ptrNodoAnterior del nuevo nodo creado.",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
@@ -2719,7 +2719,7 @@ function crear_tabla_insertar_nodo_antes_de(){
     document.getElementById("btn_insertar_nodo_antes_de_explicacion_33_" + direccion_memoria_nodo).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "El ptrNodoSiguiente del nodo final siempre deba apuntar al nodo de inicio, y esto tambien cuando se  agrega nuevo nodo al principio. Así mantenemos \
+            "explicacion": "El ptrNodoAnterior del nodo siguiente del nodo de inicio siempre deba apuntar al nodo de inicio, y esto tambien cuando se  agrega nuevo nodo al principio. Así mantenemos \
             la lista como una lista circular",
             "imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
@@ -2783,7 +2783,7 @@ function crear_tabla_insertar_nodo_antes_de(){
     document.getElementById("btn_insertar_nodo_antes_de_explicacion_35_" + direccion_memoria_nodo).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "El miembro ptrNodoSiguiente del nuevo nodo debe de apuntar a la dirección de memoria del nodo actual (dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato es igual al valor buscado).",
+            "explicacion": "El miembro ptrNodoAnterior del nuevo nodo debe de apuntar a la dirección de memoria del nodo anterior al actual (dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato es igual al valor buscado).",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
@@ -2812,7 +2812,7 @@ function crear_tabla_insertar_nodo_antes_de(){
     document.getElementById("btn_insertar_nodo_antes_de_explicacion_36_" + direccion_memoria_nodo).onclick = function() {
         let objExplicacion = {
             "titulo": "",
-            "explicacion": "El miembro ptrNodoSiguiente del nuevo nodo debe de apuntar a la dirección de memoria del nodo actual (dirección de memoria del primer nodo encontrado cuyo valor en su miembro dato es igual al valor buscado).",
+            "explicacion": "El miembro del ptrNodoAnterior del nodo actual debe apuntar al nuevo nodo que se agregara en la lista",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
