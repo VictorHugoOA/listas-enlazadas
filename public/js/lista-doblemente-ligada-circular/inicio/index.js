@@ -3128,6 +3128,11 @@ function crear_tabla_insertar_nodo_despues_de(){
         //13 //ptrNodoNuevo->ptrNodoSiguiente = NULL;
         'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
         '</span>' +
+		'<br>' +
+        '<span style="padding-left: 2em;">' +
+        //ptrNodoNuevo->ptrNodoAnterior = NULL;
+        'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> NULL<span class="simbolo">;</span>' +
+        '</span>' +
         '</td>' +
         '<td>' +
         '<button id="btn_insertar_nodo_despues_de_ejecutar_13_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
@@ -3242,6 +3247,38 @@ function crear_tabla_insertar_nodo_despues_de(){
         '<td>' +
         '</td>' +
         '<td>' +
+        '</td>' +
+        '</tr>' +
+
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 3em;">' +
+        //24 //ptrNodoActual->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoNuevo
+        'ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoNuevo<span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_insertar_nodo_despues_de_ejecutar_24_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_insertar_nodo_despues_de_explicacion_24_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
+        '</td>' +
+        '</tr>' +
+
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 3em;">' +
+        //25 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoActual
+        'ptrNodoNuevo<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoActual<span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_insertar_nodo_despues_de_ejecutar_25_' + direccion_memoria_nodo + '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_insertar_nodo_despues_de_explicacion_25_' + direccion_memoria_nodo + '" type="button" class="btn btn-info">explicación</button>' +
         '</td>' +
         '</tr>' +
 
@@ -3654,12 +3691,16 @@ function crear_tabla_insertar_nodo_despues_de(){
     }
 
     //13 //ptrNodoNuevo->ptrNodoSiguiente = NULL;
+    //ptrNodoNuevo->ptrNodoAnterior = NULL;
     document.getElementById("btn_insertar_nodo_despues_de_ejecutar_13_" + direccion_memoria_nodo).onclick = function() {
 
         document.getElementById("btn_insertar_nodo_despues_de_ejecutar_13_" + direccion_memoria_nodo).style.display = "none";
 
         objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.inicializado = true;
         objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = null;
+
+        objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.inicializado = true;
+        objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = null;
 
         actualizar();
 
@@ -3670,7 +3711,7 @@ function crear_tabla_insertar_nodo_despues_de(){
 
         let objExplicacion = {
             "titulo": "Función void insertar_despues_de()",
-            "explicacion": "Se inicializa el miembro ptrNodoSiguiente del nuevo nodo en NULL. Ya que aun no se indica cual es el nodo que sigue del nuevo nodo.",
+            "explicacion": "Se inicializa los miembros ptrNodoSiguiente y ptrNodoAnterior del nuevo nodo en NULL.",
             "imagen_titulo": "Plan de programación 4 - Sintaxis operador new",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_4_operador_new.PNG",
         };
@@ -3734,7 +3775,7 @@ function crear_tabla_insertar_nodo_despues_de(){
         if(obj_ptrNodoFinal.nodo_conectado.key == obj_ptrNodoActual.nodo_conectado.key){
             document.getElementById("btn_insertar_nodo_despues_de_ejecutar_17_" + direccion_memoria_nodo).style.display = "block";
         }else{
-            document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).style.display = "block";
+            document.getElementById("btn_insertar_nodo_despues_de_ejecutar_24_" + direccion_memoria_nodo).style.display = "block";
         }
 
     }
@@ -3844,30 +3885,57 @@ function crear_tabla_insertar_nodo_despues_de(){
     }
 
     //}else{
+	
+
+	//24 //ptrNodoActual->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoNuevo
+    document.getElementById("btn_insertar_nodo_despues_de_ejecutar_24_" + direccion_memoria_nodo).onclick = function() {
+        document.getElementById("btn_insertar_nodo_despues_de_ejecutar_24_" + direccion_memoria_nodo).style.display = "none";
+		objetos[objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key].ptrLigaAnt.key = obj_ptrNodoNuevo.nodo_conectado.key;
+        actualizar();
+        document.getElementById("btn_insertar_nodo_despues_de_ejecutar_25_" + direccion_memoria_nodo).style.display = "block";
+    }
+    document.getElementById("btn_insertar_nodo_despues_de_explicacion_25_" + direccion_memoria_nodo).onclick = function() {
+        let objExplicacion = {
+            "titulo": "Función void insertar_despues_de()",
+            "explicacion": "Al miembro ptrNodoAnterior del nodo siguiente al nodo que buscamos lo asignamos al puntero nuevo, que se agregara en ese espacio",
+            "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+        };
+        crear_explicacion(objExplicacion, "block");
+    }
+
+	//25 //ptrNodoNuevo->ptrNodoAnterior = ptrNodoActual
+    document.getElementById("btn_insertar_nodo_despues_de_ejecutar_25_" + direccion_memoria_nodo).onclick = function() {
+        document.getElementById("btn_insertar_nodo_despues_de_ejecutar_25_" + direccion_memoria_nodo).style.display = "none";
+		objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoActual.nodo_conectado.key;
+        actualizar();
+        document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).style.display = "block";
+    }
+    document.getElementById("btn_insertar_nodo_despues_de_explicacion_25_" + direccion_memoria_nodo).onclick = function() {
+        let objExplicacion = {
+            "titulo": "Función void insertar_despues_de()",
+            "explicacion": "Al miembro ptrNodoAnterior del nodo nuevo le asignamos el nodo de busqueda porque es el nodo que estará antes del nodo que agregaremos",
+            "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+        };
+        crear_explicacion(objExplicacion, "block");
+    }
 
     //19 //ptrNodoNuevo->ptrNodoSiguiente = ptrNodoActual->ptrNodoSiguiente;
     document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).onclick = function() {
-
         document.getElementById("btn_insertar_nodo_despues_de_ejecutar_19_" + direccion_memoria_nodo).style.display = "none";
-
         objetos[obj_ptrNodoNuevo.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoActual.nodo_conectado.key].ptrLigaSig.key;
-
         actualizar();
-
         document.getElementById("btn_insertar_nodo_despues_de_ejecutar_20_" + direccion_memoria_nodo).style.display = "block";
-
     }
     document.getElementById("btn_insertar_nodo_despues_de_explicacion_19_" + direccion_memoria_nodo).onclick = function() {
-
         let objExplicacion = {
             "titulo": "Función void insertar_despues_de()",
             "explicacion": "Al miembro ptrNodoSiguiente del nuevo nodo creado, se le asigna la dirección de memoria del nodo siguiente del nodo que esta siendo apuntado por el puntero ptrNodoActual.",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
-
         crear_explicacion(objExplicacion, "block");
-
     }
 
     //20 //ptrNodoActual->ptrNodoSiguiente = ptrNodoNuevo;
