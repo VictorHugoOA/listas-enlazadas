@@ -5741,6 +5741,23 @@ function crear_tabla_eliminar_nodo_informacionx(){
         '</td>' +
         '</tr>' +
 
+        //30 //ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 5em;">' +
+        //ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior
+        'ptrNodoEliminar<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoEliminar<span class="simbolo">-&#62;</span>ptrNodoSiguiente<span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_eliminar_nodo_informacion_ejecutar_30_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_eliminar_nodo_informacion_explicacion_30_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
+        '</td>' +
+        '</tr>' +
+
         //}
         '<tr>' +
         '<td></td>' +
@@ -6489,28 +6506,38 @@ function crear_tabla_eliminar_nodo_informacionx(){
 
     //23 //ptrNodoAnterior->ptrNodoSiguiente = ptrNodoEliminar->ptrNodoSiguiente;
     document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).onclick = function() {
-
         document.getElementById("btn_eliminar_nodo_informacion_ejecutar_23_" + cont_eliminar).style.display = "none";
-
         objetos[obj_ptrNodoAnterior.nodo_conectado.key].ptrLigaSig.key = objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key;
-
         actualizar();
-
-        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
-
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_30_" + cont_eliminar).style.display = "block";
     }
     //23
     document.getElementById("btn_eliminar_nodo_informacion_explicacion_23_" + cont_eliminar).onclick = function() {
-
         let objExplicacion = {
             "titulo": "",
             "explicacion": "El miembro ptrNodoSiguiente del nodo que está antes del nodo que va a ser eliminado, debe de apuntar al nodo que sigue del nodo al que va a ser eliminado.",
             "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
         };
-
         crear_explicacion(objExplicacion, "block");
-
+    }
+	
+    //30 //ptrNodoEliminar->ptrNodoSiguiente->ptrNodoAnterior = ptrNodoAnterior
+    document.getElementById("btn_eliminar_nodo_informacion_ejecutar_30_" + cont_eliminar).onclick = function() {
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_30_" + cont_eliminar).style.display = "none";
+        objetos[objetos[obj_ptrNodoEliminar.nodo_conectado.key].ptrLigaSig.key].ptrLigaAnt.key = obj_ptrNodoAnterior.nodo_conectado.key;
+        actualizar();
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
+    }
+    //30
+    document.getElementById("btn_eliminar_nodo_informacion_explicacion_30_" + cont_eliminar).onclick = function() {
+        let objExplicacion = {
+            "titulo": "",
+            "explicacion": "El ptrNodoAnterior del nodo siguiente al que vamos a eliminar deba apuntar al nodo anterior al eliminar",
+            "imagen_titulo": "Plan de programación 6 - Sintaxis acceso a un miembro de una estructura haciendo uso de una variable tipo puntero",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_6_acceso_miembro_estructura.PNG",
+        };
+        crear_explicacion(objExplicacion, "block");
     }
 
     //}
