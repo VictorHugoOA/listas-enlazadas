@@ -5382,12 +5382,12 @@ function crear_tabla_eliminar_nodo_informacionx(){
         '</td>' +
         '</tr>' +
 
-        //10 //if (ptrNodoActual->ptrNodoSiguiente != NULL){
+        //10 //if (ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
         '<tr>' +
         '<td></td>' +
         '<td>' +
         '<span style="padding-left: 3em;">' +
-        //if(ptrNodoActual->ptrNodoSiguiente != NULL){
+        //if(ptrNodoActual->ptrNodoSiguiente != ptrNodoInicio){
         '<span class="palabra-reservada">if</span><span class="simbolo">(</span>ptrNodoActual<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">!=</span> ptrNodoInicio<span class="simbolo">)</span><span class="simbolo">{</span>' +
         '</span>' +
         '</td>' +
@@ -5632,7 +5632,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
         '<td>' +
         '<span style="padding-left: 5em;">' +
         //ptrNodoFinal->ptrNodoSiguiente = ptrNodoInicio
-        'ptrNodoFinal<span>-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio' +
+        'ptrNodoFinal<span class="simbolo">-&#62;</span>ptrNodoSiguiente <span class="simbolo">=</span> ptrNodoInicio' +
         '</span>' +
         '</td>' +
         '<td>' +
@@ -5640,6 +5640,23 @@ function crear_tabla_eliminar_nodo_informacionx(){
         '</td>' +
         '<td>' +
         '<button id="btn_eliminar_nodo_informacion_explicacion_28_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
+        '</td>' +
+        '</tr>' +
+
+        //29 //ptrNodoInicio->ptrNodoAnterior = ptrNodoFinal
+        '<tr>' +
+        '<td></td>' +
+        '<td>' +
+        '<span style="padding-left: 5em;">' +
+        //ptrNodoInicio->ptrNodoAnterior = ptrNodoFinal;
+        'ptrNodoInicio <span class="simbolo">-&#62;</span>ptrNodoAnterior <span class="simbolo">=</span> ptrNodoFinal<span class="simbolo">;</span>' +
+        '</span>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_eliminar_nodo_informacion_ejecutar_29_' + cont_eliminar+ '" type="button" class="btn btn-success btn-deshabilitar">ejecutar</button>' +
+        '</td>' +
+        '<td>' +
+        '<button id="btn_eliminar_nodo_informacion_explicacion_29_' + cont_eliminar + '" type="button" class="btn btn-info">explicación</button>' +
         '</td>' +
         '</tr>' +
 
@@ -6381,7 +6398,7 @@ function crear_tabla_eliminar_nodo_informacionx(){
         document.getElementById("btn_eliminar_nodo_informacion_ejecutar_28_" + cont_eliminar).style.display = "none";
         objetos[obj_ptrNodoFinal.nodo_conectado.key].ptrLigaSig.key = obj_ptrNodoInicio.nodo_conectado.key;
         actualizar();
-        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_29_" + cont_eliminar).style.display = "block";
     }
     //28
     document.getElementById("btn_eliminar_nodo_informacion_explicacion_28_" + cont_eliminar).onclick = function() {
@@ -6392,6 +6409,24 @@ function crear_tabla_eliminar_nodo_informacionx(){
             "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
         };
         crear_explicacion(objExplicacion, "block");
+    }
+
+    //28 //ptrNodoInicio->ptrNodoAnterior = ptrNodoFinal
+    document.getElementById("btn_eliminar_nodo_informacion_ejecutar_29_" + cont_eliminar).onclick = function() {
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_29_" + cont_eliminar).style.display = "none";
+        objetos[obj_ptrNodoInicio.nodo_conectado.key].ptrLigaAnt.key = obj_ptrNodoFinal.nodo_conectado.key;
+        actualizar();
+        document.getElementById("btn_eliminar_nodo_informacion_ejecutar_24_" + cont_eliminar).style.display = "block";
+    }
+    //28
+    document.getElementById("btn_eliminar_nodo_informacion_explicacion_29_" + cont_eliminar).onclick = function() {
+        let objExplicacion = {
+            "titulo": "",
+            "explicacion": "Asignamos el miembro ptrNodoAnterior del nodo de inicio para que apunte al nodo final",
+            "imagen_titulo": "Plan de programación 7 - Sintaxis acceso a dirección de memoria a la que apunta un puntero",
+            "imagen_ruta": "/imgs/listas_ligadas/listas_simplemente_ligadas/planes_programacion/plan_7_acceso_direccion_memoria_puntero.PNG",
+        };
+        crear_explicacion(objExplicacion, "none");
     }
 
     //}else{
